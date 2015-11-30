@@ -1,12 +1,13 @@
+import java.util.ArrayList;
 
 public class Pokemon extends Card {
 	
 	private int health;
 	private int stage;
-	private int evolve;
+	private ArrayList<Evolve> evolve = new ArrayList<Evolve>();
 	private int collectorCardNumber;
 	private int expansionSymbol;
-	private Energy Energy;
+	private Energy.EnergyTypes Energy;
 	
 	public int getHealth() {
 		return health;
@@ -14,10 +15,6 @@ public class Pokemon extends Card {
 	
 	public int getStage() {
 		return stage;
-	}
-	
-	public int getEvolve() {
-		return evolve;
 	}
 	
 	public int getCollectorCardNumber() {
