@@ -1,8 +1,12 @@
+package Model;
 
 public class Energy extends Card {
 	
-	public Energy() {
-		name = EnergyTypes.Grass.toString();
+	EnergyTypes type;;
+	
+	public Energy(EnergyTypes type) {
+		super(type.toString());
+		this.type = type;
 	}
 	
 	public String toString() {
@@ -76,6 +80,7 @@ public class Energy extends Card {
 				return "Colorless";
 			}
 		};
+		
 	}
 
 }

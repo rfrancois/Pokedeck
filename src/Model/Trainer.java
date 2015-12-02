@@ -1,6 +1,10 @@
+package Model;
 
 public class Trainer extends Card {
 	
+	public Trainer(String name) {
+		super(name);
+	}
 	private String text;
 	private String rule;
 	
