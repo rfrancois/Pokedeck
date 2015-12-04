@@ -8,12 +8,15 @@ import View.Pokemon.*;
 
 public class PokemonController {
 
-	public void add() {
-		Add add = new Add();
-		Add attack = new Add();
-		//Attack[] attacks = new Attack[]{new Attack(add.getAttackName(), add.getAttackDamage()), new Attack(add.getAttackName(), add.getAttackDamage())};
-		//int[] tests = new int[]{1, 2};
+	SavePokemon v;
+	
+	public PokemonController(SavePokemon savePokemon) {
+		// TODO Auto-generated constructor stub
+		v = savePokemon;
+	}
+	
+	public void actionPerformed() {
 		ArrayList<EnergyTypes> energies = new ArrayList<EnergyTypes>();
-		Pokemon pokemon = new Pokemon(add.getName(), new Attack[]{new Attack(add.getAttackName(), add.getAttackDamage()), new Attack(add.getAttackName(), add.getAttackDamage())}, add.getHealth(), null, null, add.getCollectorCardNumber(), add.getExpansionSymbol(), energies);
+		Pokemon pokemon = new Pokemon(v.getName(), new Attack[]{new Attack(v.getAttackName(), v.getAttackDamage()), new Attack(v.getAttackName(), v.getAttackDamage())}, v.getHealth(), null, null, v.getCollectorCardNumber(), v.getExpansionSymbol(), energies);
 	}
 }

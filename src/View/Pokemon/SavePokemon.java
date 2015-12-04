@@ -2,7 +2,15 @@ package View.Pokemon;
 
 import java.util.Scanner;
 
-public class Add {
+import Controller.PokemonController;
+
+public class SavePokemon {
+	
+	PokemonController pokemonController;
+	
+	public SavePokemon() {
+		pokemonController = new PokemonController(this);
+	}
 	
 	private Scanner sc = new Scanner(System.in);
 	
@@ -43,5 +51,13 @@ public class Add {
 	public int getExpansionSymbol() {
 		System.out.println("Symbole d'expansion :");
 		return sc.nextInt();
+	}
+
+	public void constructGUI() {
+		// TODO Auto-generated method stub	
+	}
+	
+	public void getData() {
+		pokemonController.actionPerformed();
 	}
 }

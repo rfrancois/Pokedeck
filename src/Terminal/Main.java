@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import Controller.*;
 import Model.*;
+import View.Pokemon.*;
 
 public class Main {
 
@@ -11,7 +12,6 @@ public class Main {
 		
 		int choice;
 		Scanner sc = new Scanner(System.in);
-		PokemonController pokemonController = new PokemonController();
 		
 		do {
 			System.out.println("Choisissez une action :\n"
@@ -23,7 +23,9 @@ public class Main {
 					System.out.println("Le programme est quitté.");
 					break;
 				case 1:
-					pokemonController.add();
+					SavePokemon v = new SavePokemon();
+					v.constructGUI();
+					v.getData();
 					break;
 				default:
 					System.out.println("Une erreur est survenue.");
