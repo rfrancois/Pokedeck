@@ -16,8 +16,8 @@ public class Main {
 		do {
 			System.out.println("Choisissez une action :\n"
 					+ "1 - Ajouter un Pokémon\n"
-					+ "2 - Afficher le tas\n"
-					+ "0 - Quitter le programme\n");
+					+ "2 - Afficher le jeu\n"
+					+ "0 - Quitter le programme");
 			choice = sc.nextInt();
 			switch(choice) {
 				case 0:
@@ -41,8 +41,7 @@ public class Main {
 	 */
 	public static void add() {
 		AddPokemon add = new AddPokemon();
-		UpdatePokemon up = new UpdatePokemon(add.getData());
-		up.constructGUI();
+		update(add.getData());
 	}
 	
 	/**
@@ -51,6 +50,13 @@ public class Main {
 	public static void display() {
 		DisplayPokemons display = new DisplayPokemons();
 		display.constructGUI();
+		Pokemon pokemon = display.getData();
+		if(pokemon != null)	update(pokemon);
+	}
+	
+	public static void update(Pokemon pokemon) {
+		UpdatePokemon up = new UpdatePokemon(pokemon);
+		up.constructGUI();
 	}
 
 }

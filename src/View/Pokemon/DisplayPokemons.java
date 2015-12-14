@@ -22,7 +22,9 @@ public class DisplayPokemons extends SavePokemon {
 		}
 		System.out.println("0 - Quitter le tas");
 		int choice = sc.nextInt();
-		if(choice != 0)	pokemonController.displayPokemons(choice-1);
+		if(choice != 0) {
+			pokemonController.displayPokemons(choice-1);
+		}
 	}
 	
 	public Pokemon getData() {

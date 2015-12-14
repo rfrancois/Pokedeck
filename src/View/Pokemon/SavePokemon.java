@@ -83,7 +83,7 @@ public class SavePokemon {
 			choice = -1;
 			System.out.println("Vous devez séléctionner au moins un type d'energie.");
 		}
-		// Don't leave until there is at least 1 energy in the least
+		// Don't leave until there is at least 1 energy in the list
 		// and user selects choice 0
 		} while (choice != 0 || energies.size() <= 0);
 		return energies;
