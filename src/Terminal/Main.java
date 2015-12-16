@@ -1,5 +1,8 @@
 package Terminal;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 import Controller.*;
@@ -10,6 +13,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		//new Pokemon("test", 20, null, null, null, null, 0, 0);
+		
 		int choice;
 		Scanner sc = new Scanner(System.in);
 		
@@ -17,6 +22,7 @@ public class Main {
 			System.out.println("Choisissez une action :\n"
 					+ "1 - Ajouter un Pokémon\n"
 					+ "2 - Afficher le jeu\n"
+					+ "3 - Rechercher un pokemon\n"
 					+ "0 - Quitter le programme");
 			choice = sc.nextInt();
 			switch(choice) {
@@ -27,13 +33,28 @@ public class Main {
 					add();
 					break;
 				case 2:
-					display();
+					list();
+					break;
+				case 3:
+					search();
 					break;
 				default:
 					System.out.println("Une erreur est survenue.");
 					break;
 			}
 		} while(choice != 0);
+		
+	    /*try
+	    {
+	       FileOutputStream fileOut = new FileOutputStream("product.ser");
+	       ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	       out.writeObject(Pokemon.getPokemons());
+	       out.close();
+	       fileOut.close();
+	    } catch(IOException ioe)
+	    {
+	        ioe.printStackTrace();
+	    }*/
 	}
 	
 	/**
@@ -47,16 +68,25 @@ public class Main {
 	/**
 	 * Actions when user chooses to display all the deck
 	 */
-	public static void display() {
-		DisplayPokemons display = new DisplayPokemons();
+	public static void list() {
+		ListPokemons display = new ListPokemons();
 		display.constructGUI();
 		Pokemon pokemon = display.getData();
 		if(pokemon != null)	update(pokemon);
 	}
 	
+	/**
+	 * Update pokemon
+	 * @param pokemon Pokemon to update
+	 */
 	public static void update(Pokemon pokemon) {
 		UpdatePokemon up = new UpdatePokemon(pokemon);
 		up.constructGUI();
+	}
+	
+	public static void search() {
+		SearchPokemon search = new SearchPokemon();
+		search.constructGUI();		
 	}
 
 }

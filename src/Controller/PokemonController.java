@@ -4,7 +4,6 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 import Model.*;
-import Model.Energy.EnergyTypes;
 import View.Pokemon.*;
 
 public class PokemonController {
@@ -29,7 +28,8 @@ public class PokemonController {
 	}*/
 
 	public void addPokemon() {
-		pokemon = new Pokemon(v.getName(), new Attack[]{new Attack(v.getAttackName(), v.getAttackDamage()), new Attack(v.getAttackName(), v.getAttackDamage())}, v.getHealth(), null, null, v.getCollectorCardNumber(), v.getExpansionSymbol(), v.getEnergyType());
+		Pokemon prevEvolve;
+		pokemon = new Pokemon(v.getName(), v.getHealth(), v.getEnergyType(), new Attack[]{new Attack(v.getAttackName(), v.getAttackDamage()), new Attack(v.getAttackName(), v.getAttackDamage())}, prevEvolve = v.getPrevEvolve(), v.getNextEvolve(prevEvolve), v.getCollectorCardNumber(), v.getExpansionSymbol());
 	}
 
 	public void updatePokemon(int choice) {
@@ -85,5 +85,26 @@ public class PokemonController {
 			return ;
 		}
 		v.constructGUI();
+	}
+
+	/**
+	 * Search pokemon's name in pokemons list
+	 * @param search Search typed by user
+	 */
+	public void searchPokemon(String search) {
+		ArrayList<Pokemon> pokemons = Pokemon.getPokemons();
+		ArrayList<Pokemon> match = new ArrayList<Pokemon>();
+		int compare;
+		for(Pokemon pokemon : pokemons) {
+			compare = search.compareTo(pokemon.getName());
+			if(compare >= -5 && compare <= 5) {
+				match.add(pokemon);
+			}
+		}
+		if(match.size() == 0) { 
+			v.notFound();
+			return ;
+		}
+		v.found(pokemons);
 	}
 }
