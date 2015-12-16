@@ -1,6 +1,7 @@
 package View.Pokemon;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import Model.Pokemon;
 import Terminal.Main;
@@ -13,6 +14,7 @@ public class SearchPokemon extends SavePokemon {
 	}
 	
 	public void constructGUI() {
+		Scanner sc = new Scanner(System.in);
 		String name;
 		System.out.println("Tapez le nom du pokemon a chercher :");
 		name = sc.next();

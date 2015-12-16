@@ -1,6 +1,7 @@
 package View.Pokemon;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import Controller.PokemonController;
 import Model.Pokemon;
@@ -15,6 +16,7 @@ public class ListPokemons extends SavePokemon {
 	 * Ask user which Pokemon select
 	 */
 	public void constructGUI() {
+		Scanner sc = new Scanner(System.in);
 		ArrayList<Pokemon> pokemons = Pokemon.getPokemons();
 		System.out.println("Sélectionnez un Pokemon pour le modifier :");
 		for(int i=0; i<pokemons.size(); i++) {

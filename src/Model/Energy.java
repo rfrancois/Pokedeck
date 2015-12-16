@@ -1,6 +1,8 @@
 package Model;
 
-public class Energy extends Card {
+import java.io.Serializable;
+
+public class Energy extends Card implements Serializable {
 	
 	EnergyTypes type;;
 	

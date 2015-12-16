@@ -13,13 +13,13 @@ import Terminal.Main;
 public class SavePokemon {
 
 	protected PokemonController pokemonController;
-	protected Scanner sc = new Scanner(System.in);
 
 	/**
 	 * Ask pokemon name and check if the string is correct
 	 * @return Pokemon name
 	 */
 	public String getName() {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Quel est le nom du Pokémon ?");
 		String name = sc.next();
 		if(name.isEmpty()) {
@@ -30,26 +30,31 @@ public class SavePokemon {
 	}
 
 	public String getAttackName() {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Nom de l'attaque :");
-		return sc.next();
+		return sc.nextLine();
 	}
 
 	public int getAttackDamage() {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Nombre de dommage de l'attaque :");
 		return sc.nextInt();
 	}
 
 	public int getHealth() {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Points de vie :");
 		return sc.nextInt();
 	}
 
 	public int getCollectorCardNumber() {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Numéro de carte collector :");
 		return sc.nextInt();
 	}
 
 	public int getExpansionSymbol() {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Symbole d'expansion :");
 		return sc.nextInt();
 	}
@@ -59,6 +64,7 @@ public class SavePokemon {
 	 * @return List of energy types
 	 */
 	public ArrayList<Energy.EnergyTypes> getEnergyType() {
+		Scanner sc = new Scanner(System.in);
 		ArrayList<Energy.EnergyTypes> energies = new ArrayList<Energy.EnergyTypes>();
 		int choice;
 		// A pokemon can have further energy types
@@ -111,6 +117,7 @@ public class SavePokemon {
 	 * @return A pokemon
 	 */
 	public Pokemon getPrevEvolve() {
+		Scanner sc = new Scanner(System.in);
 		ArrayList<Pokemon> pokemons = Pokemon.getPokemons();
 		// If no pokemon was created, return null
 		if(pokemons.size() == 0) return null;
@@ -137,6 +144,7 @@ public class SavePokemon {
 	 * @return A pokemon
 	 */
 	public Pokemon getNextEvolve(Pokemon preEvolve) {
+		Scanner sc = new Scanner(System.in);
 		ArrayList<Pokemon> pokemons = Pokemon.getPokemons();
 		// If no pokemon was created, return null
 		if(pokemons.size() == 0) return null;
@@ -178,6 +186,7 @@ public class SavePokemon {
 	 * Display message when pokemon was not found
 	 */
 	public void notFound() {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Aucun Pokemon ne correspond à ce nom.\n"
 				+ "1 - Refaire une recherche\n"
 				+ "0 - Quitter la recherche");
@@ -197,6 +206,7 @@ public class SavePokemon {
 	 * @param pokemons List of pokemons
 	 */
 	public void found(ArrayList<Pokemon> pokemons) {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Sélectionnez le Pokemon :");
 		int i;
 		for(i=0; i<pokemons.size(); i++) {

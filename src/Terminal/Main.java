@@ -1,8 +1,5 @@
 package Terminal;
 
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.util.Scanner;
 
 import Controller.*;
@@ -14,6 +11,8 @@ public class Main {
 	public static void main(String[] args) {
 		
 		//new Pokemon("test", 20, null, null, null, null, 0, 0);
+		//new Pokemon("test2", 20, null, null, null, null, 0, 0);
+		Pokemon.deserialize();
 		
 		int choice;
 		Scanner sc = new Scanner(System.in);
@@ -44,17 +43,7 @@ public class Main {
 			}
 		} while(choice != 0);
 		
-	    /*try
-	    {
-	       FileOutputStream fileOut = new FileOutputStream("product.ser");
-	       ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	       out.writeObject(Pokemon.getPokemons());
-	       out.close();
-	       fileOut.close();
-	    } catch(IOException ioe)
-	    {
-	        ioe.printStackTrace();
-	    }*/
+		Pokemon.serialize();
 	}
 	
 	/**

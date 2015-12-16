@@ -1,6 +1,7 @@
 package View.Pokemon;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import Controller.PokemonController;
 import Model.Attack;
@@ -14,6 +15,7 @@ public class UpdatePokemon extends SavePokemon {
 	}
 
 	public void constructGUI() {
+		Scanner sc = new Scanner(System.in);
 		int choice;
 		//do {
 		System.out.println(pokemonController.getPokemon());
@@ -37,6 +39,7 @@ public class UpdatePokemon extends SavePokemon {
 	 * @return Updated attack
 	 */
 	public Attack selectAttack() {
+		Scanner sc = new Scanner(System.in);
 		int choice;
 		Attack attacks[] = pokemonController.getPokemon().getAttacks();
 		// Display all the attacks
@@ -56,6 +59,7 @@ public class UpdatePokemon extends SavePokemon {
 	 * @return List of energy types
 	 */
 	public ArrayList<Energy.EnergyTypes> getEnergyType(ArrayList<Energy.EnergyTypes> energies) {
+		Scanner sc = new Scanner(System.in);
 		int choice;
 		// A pokemon can have further energy types
 		// A loop is implemented to ask for energy

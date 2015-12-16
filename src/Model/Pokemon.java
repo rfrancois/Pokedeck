@@ -1,11 +1,18 @@
 package Model;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import com.oracle.jrockit.jfr.Producer;
+
 import Model.Energy.EnergyTypes;
 
-public class Pokemon extends Card implements Serializable {
+public class Pokemon extends Card {
 
 	private static ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
 	private int health;
@@ -93,6 +100,46 @@ public class Pokemon extends Card implements Serializable {
 			p = p.nextEvolve;
 			p.stage++;
 		}
+	}
+	
+	/**
+	 * Save deck
+	 */
+	public static void serialize() {
+	    try
+	    {
+	       FileOutputStream fileOut = new FileOutputStream("data/pokemon.ser");
+	       ObjectOutputStream out = new ObjectOutputStream(fileOut);
+	       out.writeObject(pokemons);
+	       out.close();
+	       fileOut.close();
+	    } catch(IOException ioe)
+	    {
+	        ioe.printStackTrace();
+	    }
+	}
+	
+	/**
+	 * Set deck
+	 */
+	public static void deserialize() {
+		try
+	    {
+	        FileInputStream fileIn = new FileInputStream("data/pokemon.ser");
+	        ObjectInputStream in = new ObjectInputStream(fileIn);
+	        pokemons = (ArrayList<Pokemon>) in.readObject();
+	        in.close();
+	        fileIn.close();
+	    } catch(IOException ioe)
+	    {
+	        ioe.printStackTrace();
+	        return;
+	    } catch(ClassNotFoundException c)
+	    {
+	        System.out.println("Product class not found");
+	        c.printStackTrace();
+	        return;
+	    }
 	}
 
 }

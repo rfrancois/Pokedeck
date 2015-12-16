@@ -1,6 +1,8 @@
 package Model;
 
-public class Attack {
+import java.io.Serializable;
+
+public class Attack implements Serializable {
 	private String name;
 	private int damage;
 	

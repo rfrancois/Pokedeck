@@ -1,6 +1,8 @@
 package Model;
 
-public class Card {
+import java.io.Serializable;
+
+public class Card implements Serializable {
 	
 	protected String name;
 
