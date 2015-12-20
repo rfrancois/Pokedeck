@@ -11,8 +11,9 @@ import Model.Energy.EnergyTypes;
 import Model.Pokemon;
 import Model.View;
 import Terminal.Main;
+import View.Card.SaveCard;
 
-public class SavePokemon implements View {
+public class SavePokemon extends SaveCard implements View {
 
 	protected PokemonController pokemonController;
 	

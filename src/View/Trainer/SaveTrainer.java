@@ -8,9 +8,11 @@ import Model.Pokemon;
 import Model.Trainer;
 import Model.View;
 import Model.Trainer.TrainerTypes;
+import View.Card.SaveCard;
 import View.Pokemon.AddPokemon;
+import View.Pokemon.UpdatePokemon;
 
-public class SaveTrainer implements View {
+public class SaveTrainer extends SaveCard implements View {
 	
 	protected TrainerController trainerController;
 
@@ -18,11 +20,11 @@ public class SaveTrainer implements View {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Sélectionnez le type :");
 		for(int i=0; i<Trainer.TrainerTypes.values().length; i++) {
-			System.out.println(i + " - " + Trainer.TrainerTypes.values()[i]);
+			System.out.println(i+1 + " - " + Trainer.TrainerTypes.values()[i]);
 		}
 		int index = sc.nextInt();
 		if(index < 0 || index > Trainer.TrainerTypes.values().length) return getType();
-		return Trainer.TrainerTypes.values()[index];
+		return Trainer.TrainerTypes.values()[index-1];
 	}
 
 	public String getText() {
@@ -49,8 +51,7 @@ public class SaveTrainer implements View {
 
 	@Override
 	public void add() {
-		// TODO Auto-generated method stub
-		SaveTrainer add = new SaveTrainer();
+		AddTrainer add = new AddTrainer();
 		//update(add.getData());
 	}
 
@@ -62,8 +63,8 @@ public class SaveTrainer implements View {
 
 	@Override
 	public void update(Card card) {
-		// TODO Auto-generated method stub
-		
+		UpdateTrainer up = new UpdateTrainer((Trainer) card);
+		up.constructGUI();
 	}
 
 	@Override

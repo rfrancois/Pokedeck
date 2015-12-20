@@ -81,19 +81,6 @@ public class PokemonController {
 	}
 
 	/**
-	 * Fill pokemon variable if index is correct
-	 * @param choice Selected Pokemon
-	 */
-	public void displayPokemons(int choice) {
-		ArrayList<Pokemon> pokemons = Pokemon.getPokemons();
-		if(choice >= 0 && choice < pokemons.size()) {
-			pokemon = pokemons.get(choice);
-			return ;
-		}
-		v.constructGUI();
-	}
-
-	/**
 	 * Search pokemon's name in pokemons list
 	 * @param search Search typed by user
 	 */

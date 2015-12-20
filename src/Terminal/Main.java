@@ -4,7 +4,9 @@ import java.util.Scanner;
 
 import Controller.*;
 import Model.*;
+import View.Card.SaveCard;
 import View.Pokemon.*;
+import View.Trainer.SaveTrainer;
 
 public class Main {
 
@@ -14,29 +16,30 @@ public class Main {
 		//new Pokemon("test2", 20, null, null, null, null, 0, 0);
 		Pokemon.deserialize();
 		
-		int choice;
+		int choice, type;
 		Scanner sc = new Scanner(System.in);
+		View view;
 		
 		do {
 			System.out.println("Choisissez une action :\n"
-					+ "1 - Ajouter un Pokémon\n"
+					+ "1 - Ajouter une carte\n"
 					+ "2 - Afficher le jeu\n"
 					+ "3 - Rechercher un pokemon\n"
 					+ "0 - Quitter le programme");
 			choice = sc.nextInt();
-			SavePokemon savePokemon = new SavePokemon();
+			view = new SaveCard();
 			switch(choice) {
 				case 0:
 					System.out.println("Le programme est quitté.");
 					break;
 				case 1:
-					savePokemon.add();
+					view.add();
 					break;
 				case 2:
-					savePokemon.list();
+					view.list();
 					break;
 				case 3:
-					savePokemon.search();
+					view.search();
 					break;
 				default:
 					System.out.println("Une erreur est survenue.");

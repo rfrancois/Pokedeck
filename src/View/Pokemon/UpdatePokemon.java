@@ -17,7 +17,6 @@ public class UpdatePokemon extends SavePokemon {
 	public void constructGUI() {
 		Scanner sc = new Scanner(System.in);
 		int choice;
-		//do {
 		System.out.println(pokemonController.getPokemon());
 		System.out.println("Apporter une modification sur :\n"
 				+ "1 - Le nom\n"				
@@ -31,7 +30,6 @@ public class UpdatePokemon extends SavePokemon {
 				+ "0 - Quitter la modification");
 		choice = sc.nextInt();
 		pokemonController.updatePokemon(choice);
-		//} while(choice != 0);
 	}
 
 }
