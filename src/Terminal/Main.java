@@ -24,18 +24,19 @@ public class Main {
 					+ "3 - Rechercher un pokemon\n"
 					+ "0 - Quitter le programme");
 			choice = sc.nextInt();
+			SavePokemon savePokemon = new SavePokemon();
 			switch(choice) {
 				case 0:
 					System.out.println("Le programme est quitté.");
 					break;
 				case 1:
-					add();
+					savePokemon.add();
 					break;
 				case 2:
-					list();
+					savePokemon.list();
 					break;
 				case 3:
-					search();
+					savePokemon.search();
 					break;
 				default:
 					System.out.println("Une erreur est survenue.");
@@ -44,38 +45,6 @@ public class Main {
 		} while(choice != 0);
 		
 		Pokemon.serialize();
-	}
-	
-	/**
-	 * Actions when user chooses to add a pokemon
-	 */
-	public static void add() {
-		AddPokemon add = new AddPokemon();
-		update(add.getData());
-	}
-	
-	/**
-	 * Actions when user chooses to display all the deck
-	 */
-	public static void list() {
-		ListPokemons display = new ListPokemons();
-		display.constructGUI();
-		Pokemon pokemon = display.getData();
-		if(pokemon != null)	update(pokemon);
-	}
-	
-	/**
-	 * Update pokemon
-	 * @param pokemon Pokemon to update
-	 */
-	public static void update(Pokemon pokemon) {
-		UpdatePokemon up = new UpdatePokemon(pokemon);
-		up.constructGUI();
-	}
-	
-	public static void search() {
-		SearchPokemon search = new SearchPokemon();
-		search.constructGUI();		
 	}
 
 }

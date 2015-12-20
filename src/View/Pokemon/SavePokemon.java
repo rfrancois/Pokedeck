@@ -5,14 +5,48 @@ import java.util.Scanner;
 
 import Controller.PokemonController;
 import Model.Attack;
+import Model.Card;
 import Model.Energy;
 import Model.Energy.EnergyTypes;
 import Model.Pokemon;
+import Model.View;
 import Terminal.Main;
 
-public class SavePokemon {
+public class SavePokemon implements View {
 
 	protected PokemonController pokemonController;
+	
+	/**
+	 * Actions when user chooses to add a pokemon
+	 */
+	public void add() {
+		AddPokemon add = new AddPokemon();
+		update(add.getData());
+	}
+	
+	/**
+	 * Actions when user chooses to display all the deck
+	 */
+	public void list() {
+		ListPokemons display = new ListPokemons();
+		display.constructGUI();
+		Pokemon pokemon = display.getData();
+		if(pokemon != null)	update(pokemon);
+	}
+	
+	/**
+	 * Update pokemon
+	 * @param pokemon Pokemon to update
+	 */
+	public void update(Card card) {
+		UpdatePokemon up = new UpdatePokemon((Pokemon) card);
+		up.constructGUI();
+	}
+	
+	public void search() {
+		SearchPokemon search = new SearchPokemon();
+		search.constructGUI();		
+	}
 
 	/**
 	 * Ask pokemon name and check if the string is correct
@@ -319,6 +353,6 @@ public class SavePokemon {
 			constructGUI();
 			return ;
 		}
-		Main.update(pokemons.get(index-1));
+		update(pokemons.get(index-1));
 	}
 }
