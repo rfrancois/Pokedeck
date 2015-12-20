@@ -36,31 +36,37 @@ public class PokemonController {
 		//do {
 		switch(choice) {
 		case 0:
-			System.out.println("Vous quittez la modification de Pokemon");
+			System.out.println("Vous quittez la modification de Pokemon.");
 			return ;
 		case 1:
-			v.getName();
+			pokemon.changeName(v.getName());
 			break;
 		case 2:
-			v.selectAttack();
+			pokemon.changeHealth(v.getHealth());
 			break;
 		case 3:
-			v.getHealth();
+			pokemon.changeEnergies(v.getEnergyType(pokemon.getEnergiesTypes()));
 			break;
 		case 4:
-			System.out.println("En construction");
+			pokemon.changeAttacks(v.selectAttack());
 			break;
 		case 5:
-			System.out.println("En construction");
+			Pokemon prevEvolve = v.getEvolve(false);
+			if(prevEvolve != null) {
+				pokemon.changePrevEvolve(prevEvolve);
+			}
 			break;
 		case 6:
-			v.getCollectorCardNumber();
+			Pokemon nextEvolve = v.getEvolve(true);
+			if(nextEvolve != null) {
+				pokemon.changeNextEvolve(nextEvolve);
+			}
 			break;
 		case 7:
-			v.getExpansionSymbol();
+			pokemon.changeCollectorCardNumber(v.getCollectorCardNumber());
 			break;
 		case 8:
-			v.getEnergyType(pokemon.getEnergiesTypes());
+			pokemon.changeExpansionSymbol(v.getExpansionSymbol());
 			break;
 		default:
 			System.out.println("Une erreur s'est produite.");
@@ -96,7 +102,8 @@ public class PokemonController {
 		ArrayList<Pokemon> match = new ArrayList<Pokemon>();
 		int compare;
 		for(Pokemon pokemon : pokemons) {
-			compare = search.compareTo(pokemon.getName());
+			compare = search.compareToIgnoreCase(pokemon.getName());
+			// Allow mistakes in the search
 			if(compare >= -5 && compare <= 5) {
 				match.add(pokemon);
 			}

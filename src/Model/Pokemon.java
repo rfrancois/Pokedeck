@@ -36,7 +36,7 @@ public class Pokemon extends Card {
 		if(prevEvolve != null) {
 			prevEvolve.nextEvolve = this;
 		}
-		this.stage = setStage();
+		setStage();
 		this.nextEvolve = nextEvolve;
 		if(nextEvolve != null) {
 			nextEvolve.prevEvolve = this;
@@ -53,6 +53,10 @@ public class Pokemon extends Card {
 	 */
 	public static ArrayList<Pokemon> getPokemons() {
 		return pokemons;
+	}
+
+	public int getStage() {
+		return stage;
 	}
 
 	public Attack[] getAttacks() {
@@ -79,18 +83,29 @@ public class Pokemon extends Card {
 
 	/**
 	 * Determinate stage by exploring all previous evolves of the pokemon
-	 * @return Pokemon's stage
 	 */
-	private int setStage() {
+	private void setStage() {
 		Pokemon p = this;
-		int stage = 1;
+		stage = 1;
 		while(p.prevEvolve != null) {
-			p = prevEvolve;
+			p = p.prevEvolve;
 			stage++;
 		}
-		return stage;
 	}
-	
+
+	/**
+	 * Increment all stage of next evolves
+	 * @param stage Current stage
+	 */
+	private void setNextStages(int stage) {
+		Pokemon p = this;
+		while(p.nextEvolve != null) {
+			p = p.nextEvolve;
+			stage++;
+			p.stage = stage;
+		}
+	}
+
 	/**
 	 * Increment all stage of next evolves
 	 */
@@ -101,45 +116,154 @@ public class Pokemon extends Card {
 			p.stage++;
 		}
 	}
+
+	public void changeHealth(int newHealth) {
+		this.health = newHealth;
+	}
+
+	public void changeEnergies(ArrayList<Energy.EnergyTypes> energies) {
+		this.energies = energies;
+	}
+
+	public void changeAttacks(Attack[] attacks) {
+		this.attacks = attacks;
+	}
+
+	/**
+	 * Update pokemon's next evolve
+	 * @param nextEvolve Next evolve pokemon
+	 */
+	public void changeNextEvolve(Pokemon nextEvolve) {
+		checkInPrevEvolves(nextEvolve);
+		checkInNextEvolves(nextEvolve);
+		this.nextEvolve = nextEvolve;
+		this.nextEvolve.prevEvolve = this;
+		setNextStages(stage);
+	}
+	
+	/**
+	 * Update pokemon's previous evolve
+	 * @param prevEvolve Previous evolve pokemon
+	 */
+	public void changePrevEvolve(Pokemon prevEvolve) {
+		checkInPrevEvolves(prevEvolve);
+		checkInNextEvolves(prevEvolve);
+		this.prevEvolve = prevEvolve;
+		prevEvolve.nextEvolve = this;
+		prevEvolve.setNextStages(prevEvolve.stage);
+	}
+
+	/**
+	 * Delete all links between Pokemons if new evolve is in previous evolves
+	 * @param evolve A pokemon
+	 */
+	private void checkInPrevEvolves(Pokemon evolve) {
+		if(!getPrevEvolves().contains(evolve)) return ;
+		Pokemon p = this;
+		while(p.prevEvolve != null) {
+			p = p.prevEvolve;
+			p.nextEvolve.prevEvolve = null;
+			p.nextEvolve = null;
+			p.stage = 1;
+		}
+		stage = 1;
+		System.out.println("trol1 " + evolve.getName());
+	}
+
+	/**
+	 * Delete all links between Pokemons if new evolve is in next evolves
+	 * @param evolve A pokemon
+	 */
+	private void checkInNextEvolves(Pokemon evolve) {
+		if(!getNextEvolves().contains(evolve)) return ; 
+		Pokemon p = this;
+		while(p.nextEvolve != null) {
+			p = p.nextEvolve;
+			p.prevEvolve.nextEvolve = null;
+			p.prevEvolve = null;
+			p.stage = 1;
+		}
+		stage = 1;
+		System.out.println("trol2 " + evolve.getName());
+
+	}
+
+	public void changeCollectorCardNumber(int collectorCardNumber) {
+		this.collectorCardNumber = collectorCardNumber;
+	}
+
+	public void changeExpansionSymbol(int expansionSymbol) {
+		this.expansionSymbol = expansionSymbol;
+	}
+
+	/**
+	 * Get pokemon's previous evolves
+	 * @return List of pokemons
+	 */
+	public ArrayList<Pokemon> getPrevEvolves() {
+		ArrayList<Pokemon> evolves = new ArrayList<Pokemon>();
+		Pokemon p = this;
+		evolves.add(this);
+		while(p.prevEvolve != null) {
+			p = p.prevEvolve;
+			evolves.add(p);
+		}
+		return evolves;
+	}
+
+	/**
+	 * Get pokemon's next evolves
+	 * @return List of pokemons
+	 */
+	public ArrayList<Pokemon> getNextEvolves() {
+		ArrayList<Pokemon> evolves = new ArrayList<Pokemon>();
+		Pokemon p = this;
+		evolves.add(this);
+		while(p.nextEvolve != null) {
+			p = p.nextEvolve;
+			evolves.add(p);
+		}
+		return evolves;
+	}
 	
 	/**
 	 * Save deck
 	 */
 	public static void serialize() {
-	    try
-	    {
-	       FileOutputStream fileOut = new FileOutputStream("data/pokemon.ser");
-	       ObjectOutputStream out = new ObjectOutputStream(fileOut);
-	       out.writeObject(pokemons);
-	       out.close();
-	       fileOut.close();
-	    } catch(IOException ioe)
-	    {
-	        ioe.printStackTrace();
-	    }
+		try
+		{
+			FileOutputStream fileOut = new FileOutputStream("data/pokemon.ser");
+			ObjectOutputStream out = new ObjectOutputStream(fileOut);
+			out.writeObject(pokemons);
+			out.close();
+			fileOut.close();
+		} catch(IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
 	}
-	
+
 	/**
 	 * Set deck
 	 */
 	public static void deserialize() {
 		try
-	    {
-	        FileInputStream fileIn = new FileInputStream("data/pokemon.ser");
-	        ObjectInputStream in = new ObjectInputStream(fileIn);
-	        pokemons = (ArrayList<Pokemon>) in.readObject();
-	        in.close();
-	        fileIn.close();
-	    } catch(IOException ioe)
-	    {
-	        ioe.printStackTrace();
-	        return;
-	    } catch(ClassNotFoundException c)
-	    {
-	        System.out.println("Product class not found");
-	        c.printStackTrace();
-	        return;
-	    }
+		{
+			FileInputStream fileIn = new FileInputStream("data/pokemon.ser");
+			ObjectInputStream in = new ObjectInputStream(fileIn);
+			pokemons = (ArrayList<Pokemon>) in.readObject();
+			in.close();
+			fileIn.close();
+		} catch(IOException ioe)
+		{
+			ioe.printStackTrace();
+			return;
+		} catch(ClassNotFoundException c)
+		{
+			System.out.println("Product class not found");
+			c.printStackTrace();
+			return;
+		}
 	}
 
 }
