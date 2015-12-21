@@ -9,10 +9,16 @@ public class Energy extends Card implements Serializable {
 	public Energy(EnergyTypes type) {
 		super(type.toString());
 		this.type = type;
+		cards.add(this);
 	}
 	
 	public String toString() {
 		return name;
+	}
+	
+	public void changeEnergy(EnergyTypes type) {
+		this.type = type;
+		super.changeName(type.toString());
 	}
 	
 	public static enum EnergyTypes {

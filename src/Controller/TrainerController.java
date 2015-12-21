@@ -28,7 +28,6 @@ public class TrainerController {
 	}
 	
 	public void updateTrainer(int choice) {
-		//do {
 		switch(choice) {
 		case 0:
 			System.out.println("Vous quittez la modification de carte Entraineur.");
@@ -45,12 +44,14 @@ public class TrainerController {
 		case 4:
 			trainer.changeType(v.getType());
 			break;
+		case 5:
+			v.delete(trainer);
+			return ;
 		default:
 			System.out.println("Une erreur s'est produite.");
 			break;
 		}
 		v.constructGUI();
-		//} while(choice != 0);
 	}
 
 	public Trainer getTrainer() {

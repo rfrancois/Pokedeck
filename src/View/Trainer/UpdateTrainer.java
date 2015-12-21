@@ -21,6 +21,7 @@ public class UpdateTrainer extends SaveTrainer {
 				+ "2 - La description\n"
 				+ "3 - La règle\n"
 				+ "4 - Le type\n"
+				+ "5 - Supprimer la carte entraineur\n"
 				+ "0 - Quitter la modification");
 		choice = sc.nextInt();
 		trainerController.updateTrainer(choice);

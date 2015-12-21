@@ -24,17 +24,7 @@ public class SavePokemon extends SaveCard implements View {
 		AddPokemon add = new AddPokemon();
 		update(add.getData());
 	}
-	
-	/**
-	 * Actions when user chooses to display all the deck
-	 */
-	public void list() {
-		ListPokemons display = new ListPokemons();
-		display.constructGUI();
-		Pokemon pokemon = display.getData();
-		if(pokemon != null)	update(pokemon);
-	}
-	
+
 	/**
 	 * Update pokemon
 	 * @param pokemon Pokemon to update
@@ -42,11 +32,6 @@ public class SavePokemon extends SaveCard implements View {
 	public void update(Card card) {
 		UpdatePokemon up = new UpdatePokemon((Pokemon) card);
 		up.constructGUI();
-	}
-	
-	public void search() {
-		SearchPokemon search = new SearchPokemon();
-		search.constructGUI();		
 	}
 
 	/**
@@ -304,57 +289,6 @@ public class SavePokemon extends SaveCard implements View {
 			return getNextEvolve();
 		}*/
 		return pokemon;
-	}
-	
-	/**
-	 * Display message when pokemon was not found
-	 */
-	public void notFound() {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Aucun Pokemon ne correspond à ce nom.\n"
-				+ "1 - Refaire une recherche\n"
-				+ "0 - Quitter la recherche");
-		int index = sc.nextInt();
-		if(index != 1 && index != 0) {
-			System.out.println("Une erreur est survenue.");
-			notFound();
-			return ;
-		}
-		if(index == 1) {
-			constructGUI();
-		}
-	}
-	
-	/**
-	 * Display list of pokemons when search matched pokemons
-	 * @param pokemons List of pokemons
-	 */
-	public void found(ArrayList<Pokemon> pokemons) {
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Sélectionnez le Pokemon :");
-		int i;
-		for(i=0; i<pokemons.size(); i++) {
-			System.out.println(i+1 + " - " + pokemons.get(i).getName());
-		}
-		// Add a choice to do another search
-		i++;
-		System.out.println(i + " - Refaire une recherche");
-		System.out.println("0 - Quitter la recherche");
-		int index = sc.nextInt();
-		if(index < 0 || index > pokemons.size()+1) {
-			System.out.println("Une erreur est survenue.");
-			found(pokemons);
-			return ;
-		}
-		if(index == 0) {
-			return ;
-		}
-		// If index isn't equal to "Refaire une recherche"
-		else if(index == i) {
-			constructGUI();
-			return ;
-		}
-		update(pokemons.get(index-1));
 	}
 	
 	/**

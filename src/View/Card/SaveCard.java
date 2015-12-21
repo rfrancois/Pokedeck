@@ -1,13 +1,15 @@
 package View.Card;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import Controller.CardController;
 import Controller.TrainerController;
 import Model.Card;
 import Model.Pokemon;
+import Model.Trainer;
 import Model.View;
-import View.Pokemon.ListPokemons;
+import View.Energy.SaveEnergy;
 import View.Pokemon.SavePokemon;
 import View.Trainer.SaveTrainer;
 
@@ -40,7 +42,14 @@ public class SaveCard implements View {
 
 	@Override
 	public void search() {
-		
+		SearchCard search = new SearchCard();
+		search.constructGUI();
+	}
+	
+	@Override
+	public void delete(Card card) {
+		DeleteCard delete = new DeleteCard(card);
+		delete.constructGUI();
 	}
 
 	/**
@@ -52,13 +61,16 @@ public class SaveCard implements View {
 		int choice;
 		System.out.println("Sélectionnez le type de carte :\n"
 				+ "1 - Pokemon\n"
-				+ "2 - Trainer");
+				+ "2 - Trainer\n"
+				+ "3 - Energie");
 		choice = sc.nextInt();
 		switch(choice) {
 		case 1:
 			return new SavePokemon();
 		case 2:
 			return new SaveTrainer();
+		case 3:
+			return new SaveEnergy();
 		default:
 			System.out.println("Une erreur s'est produite.");
 			break ;
@@ -66,6 +78,57 @@ public class SaveCard implements View {
 		return askType();
 	}
 
+	/**
+	 * Display message when pokemon was not found
+	 */
+	public void notFound() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Aucune carte ne correspond à ce nom.\n"
+				+ "1 - Refaire une recherche\n"
+				+ "0 - Quitter la recherche");
+		int index = sc.nextInt();
+		if(index != 1 && index != 0) {
+			System.out.println("Une erreur est survenue.");
+			notFound();
+			return ;
+		}
+		if(index == 1) {
+			constructGUI();
+		}
+	}
+	
+	/**
+	 * Display list of pokemons when search matched pokemons
+	 * @param pokemons List of pokemons
+	 */
+	public void found(ArrayList<Card> cards) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Sélectionnez le Pokemon :");
+		int i;
+		for(i=0; i<cards.size(); i++) {
+			System.out.println(i+1 + " - " + cards.get(i).getName());
+		}
+		// Add a choice to do another search
+		i++;
+		System.out.println(i + " - Refaire une recherche");
+		System.out.println("0 - Quitter la recherche");
+		int index = sc.nextInt();
+		if(index < 0 || index > cards.size()+1) {
+			System.out.println("Une erreur est survenue.");
+			found(cards);
+			return ;
+		}
+		if(index == 0) {
+			return ;
+		}
+		// If index isn't equal to "Refaire une recherche"
+		else if(index == i) {
+			constructGUI();
+			return ;
+		}
+		cardController.displayCards(index-1);
+		update(cardController.getCard());
+	}
 
 	public void constructGUI() {
 		// TODO Auto-generated method stub

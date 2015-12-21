@@ -33,7 +33,6 @@ public class PokemonController {
 	}
 
 	public void updatePokemon(int choice) {
-		//do {
 		switch(choice) {
 		case 0:
 			System.out.println("Vous quittez la modification de Pokemon.");
@@ -68,37 +67,17 @@ public class PokemonController {
 		case 8:
 			pokemon.changeExpansionSymbol(v.getExpansionSymbol());
 			break;
+		case 9:
+			v.delete(pokemon);
+			return ;
 		default:
 			System.out.println("Une erreur s'est produite.");
 			break;
 		}
 		v.constructGUI();
-		//} while(choice != 0);
 	}
 
 	public Pokemon getPokemon() {
 		return pokemon;
-	}
-
-	/**
-	 * Search pokemon's name in pokemons list
-	 * @param search Search typed by user
-	 */
-	public void searchPokemon(String search) {
-		ArrayList<Pokemon> pokemons = v.getPokemonsFromCards();
-		ArrayList<Pokemon> match = new ArrayList<Pokemon>();
-		int compare;
-		for(Pokemon pokemon : pokemons) {
-			compare = search.compareToIgnoreCase(pokemon.getName());
-			// Allow mistakes in the search
-			if(compare >= -5 && compare <= 5) {
-				match.add(pokemon);
-			}
-		}
-		if(match.size() == 0) { 
-			v.notFound();
-			return ;
-		}
-		v.found(pokemons);
 	}
 }

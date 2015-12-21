@@ -1,8 +1,6 @@
 package Model;
 
 import View.Pokemon.AddPokemon;
-import View.Pokemon.ListPokemons;
-import View.Pokemon.SearchPokemon;
 import View.Pokemon.UpdatePokemon;
 
 public interface View {
@@ -24,5 +22,7 @@ public interface View {
 	public void update(Card card);
 	
 	public void search();
+	
+	public void delete(Card card);
 	
 }

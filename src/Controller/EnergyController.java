@@ -1,0 +1,41 @@
+package Controller;
+
+import Model.Energy;
+import Model.Energy.EnergyTypes;
+import View.Energy.SaveEnergy;
+
+public class EnergyController {
+
+	SaveEnergy v;
+	Energy energy;
+	
+	public EnergyController(SaveEnergy v) {
+		this.v = v;
+	}
+
+	public EnergyController(Energy energy, SaveEnergy v) {
+		this.v = v;
+		this.energy = energy;
+	}
+
+	public void addEnergy() {
+		EnergyTypes energy = v.getEnergy();
+		if(energy != null) {
+			new Energy(v.getEnergy());
+		}
+	}
+
+	public Energy getEnergy() {
+		return energy;
+	}
+	
+	public SaveEnergy getV() {
+		return v;
+	}
+
+	public void updateEnergy(EnergyTypes energy) {
+		if(energy != null) {
+			this.energy.changeEnergy(energy);
+		}
+	}
+}
