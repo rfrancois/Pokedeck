@@ -1,9 +1,8 @@
-package View.Pokemon;
+package Terminal.View.Pokemon;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Controller.PokemonController;
 import Model.Attack;
 import Model.Card;
 import Model.Energy;
@@ -11,7 +10,8 @@ import Model.Energy.EnergyTypes;
 import Model.Pokemon;
 import Model.View;
 import Terminal.Main;
-import View.Card.SaveCard;
+import Terminal.Controller.PokemonController;
+import Terminal.View.Card.SaveCard;
 
 public class SavePokemon extends SaveCard implements View {
 

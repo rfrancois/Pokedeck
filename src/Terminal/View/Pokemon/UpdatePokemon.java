@@ -1,12 +1,12 @@
-package View.Pokemon;
+package Terminal.View.Pokemon;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Controller.PokemonController;
 import Model.Attack;
 import Model.Energy;
 import Model.Pokemon;
+import Terminal.Controller.PokemonController;
 
 public class UpdatePokemon extends SavePokemon {
 

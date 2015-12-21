@@ -1,7 +1,7 @@
-package View.Pokemon;
+package Terminal.View.Pokemon;
 
-import Controller.PokemonController;
 import Model.Pokemon;
+import Terminal.Controller.PokemonController;
 
 public class AddPokemon extends SavePokemon {
 	

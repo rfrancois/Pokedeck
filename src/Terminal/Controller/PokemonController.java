@@ -1,10 +1,10 @@
-package Controller;
+package Terminal.Controller;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 
 import Model.*;
-import View.Pokemon.*;
+import Terminal.View.Pokemon.*;
 
 public class PokemonController {
 

@@ -1,4 +1,4 @@
-package Controller;
+package Terminal.Controller;
 
 import java.util.ArrayList;
 
@@ -6,10 +6,10 @@ import Model.Card;
 import Model.Pokemon;
 import Model.Trainer;
 import Model.View;
-import View.Card.SaveCard;
-import View.Energy.SaveEnergy;
-import View.Pokemon.SavePokemon;
-import View.Trainer.SaveTrainer;
+import Terminal.View.Card.SaveCard;
+import Terminal.View.Energy.SaveEnergy;
+import Terminal.View.Pokemon.SavePokemon;
+import Terminal.View.Trainer.SaveTrainer;
 
 public class CardController {
 

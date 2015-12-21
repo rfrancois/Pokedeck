@@ -1,14 +1,14 @@
-package View.Energy;
+package Terminal.View.Energy;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Controller.EnergyController;
 import Model.Card;
 import Model.Energy;
 import Model.Energy.EnergyTypes;
 import Model.View;
-import View.Card.SaveCard;
+import Terminal.Controller.EnergyController;
+import Terminal.View.Card.SaveCard;
 
 public class SaveEnergy extends SaveCard implements View {
 

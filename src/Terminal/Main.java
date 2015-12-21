@@ -2,11 +2,11 @@ package Terminal;
 
 import java.util.Scanner;
 
-import Controller.*;
 import Model.*;
-import View.Card.SaveCard;
-import View.Pokemon.*;
-import View.Trainer.SaveTrainer;
+import Terminal.Controller.*;
+import Terminal.View.Card.SaveCard;
+import Terminal.View.Pokemon.*;
+import Terminal.View.Trainer.SaveTrainer;
 
 public class Main {
 

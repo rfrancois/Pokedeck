@@ -1,9 +1,9 @@
-package View.Card;
+package Terminal.View.Card;
 
 import java.util.Scanner;
 
-import Controller.CardController;
 import Model.Card;
+import Terminal.Controller.CardController;
 
 public class DeleteCard extends SaveCard {
 

@@ -1,6 +1,6 @@
-package View.Trainer;
+package Terminal.View.Trainer;
 
-import Controller.TrainerController;
+import Terminal.Controller.TrainerController;
 
 public class AddTrainer extends SaveTrainer {
 

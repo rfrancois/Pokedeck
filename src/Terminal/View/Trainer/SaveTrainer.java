@@ -1,16 +1,16 @@
-package View.Trainer;
+package Terminal.View.Trainer;
 
 import java.util.Scanner;
 
-import Controller.TrainerController;
 import Model.Card;
 import Model.Pokemon;
 import Model.Trainer;
 import Model.View;
 import Model.Trainer.TrainerTypes;
-import View.Card.SaveCard;
-import View.Pokemon.AddPokemon;
-import View.Pokemon.UpdatePokemon;
+import Terminal.Controller.TrainerController;
+import Terminal.View.Card.SaveCard;
+import Terminal.View.Pokemon.AddPokemon;
+import Terminal.View.Pokemon.UpdatePokemon;
 
 public class SaveTrainer extends SaveCard implements View {
 	

@@ -1,12 +1,12 @@
-package View.Card;
+package Terminal.View.Card;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Controller.CardController;
 import Model.Card;
 import Model.Pokemon;
 import Model.Trainer;
+import Terminal.Controller.CardController;
 
 public class ListCards extends SaveCard {
 

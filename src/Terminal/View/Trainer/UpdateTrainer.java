@@ -1,10 +1,10 @@
-package View.Trainer;
+package Terminal.View.Trainer;
 
 import java.util.Scanner;
 
-import Controller.PokemonController;
-import Controller.TrainerController;
 import Model.Trainer;
+import Terminal.Controller.PokemonController;
+import Terminal.Controller.TrainerController;
 
 public class UpdateTrainer extends SaveTrainer {
 

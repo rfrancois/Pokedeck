@@ -1,17 +1,17 @@
-package View.Card;
+package Terminal.View.Card;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import Controller.CardController;
-import Controller.TrainerController;
 import Model.Card;
 import Model.Pokemon;
 import Model.Trainer;
 import Model.View;
-import View.Energy.SaveEnergy;
-import View.Pokemon.SavePokemon;
-import View.Trainer.SaveTrainer;
+import Terminal.Controller.CardController;
+import Terminal.Controller.TrainerController;
+import Terminal.View.Energy.SaveEnergy;
+import Terminal.View.Pokemon.SavePokemon;
+import Terminal.View.Trainer.SaveTrainer;
 
 public class SaveCard implements View {
 

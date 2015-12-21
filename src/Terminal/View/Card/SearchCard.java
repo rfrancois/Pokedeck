@@ -1,8 +1,8 @@
-package View.Card;
+package Terminal.View.Card;
 
 import java.util.Scanner;
 
-import Controller.CardController;
+import Terminal.Controller.CardController;
 
 public class SearchCard extends SaveCard {
 	

@@ -1,7 +1,7 @@
 package Model;
 
-import View.Pokemon.AddPokemon;
-import View.Pokemon.UpdatePokemon;
+import Terminal.View.Pokemon.AddPokemon;
+import Terminal.View.Pokemon.UpdatePokemon;
 
 public interface View {
 

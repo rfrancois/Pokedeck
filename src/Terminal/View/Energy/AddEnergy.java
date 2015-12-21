@@ -1,8 +1,8 @@
-package View.Energy;
+package Terminal.View.Energy;
 
-import Controller.EnergyController;
 import Model.Card;
-import View.Card.SaveCard;
+import Terminal.Controller.EnergyController;
+import Terminal.View.Card.SaveCard;
 
 public class AddEnergy extends SaveEnergy {
 

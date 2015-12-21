@@ -1,8 +1,8 @@
-package Controller;
+package Terminal.Controller;
 
 import Model.Energy;
 import Model.Energy.EnergyTypes;
-import View.Energy.SaveEnergy;
+import Terminal.View.Energy.SaveEnergy;
 
 public class EnergyController {
 

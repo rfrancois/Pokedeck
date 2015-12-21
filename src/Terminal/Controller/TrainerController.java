@@ -1,8 +1,8 @@
-package Controller;
+package Terminal.Controller;
 
 import Model.Pokemon;
 import Model.Trainer;
-import View.Trainer.SaveTrainer;
+import Terminal.View.Trainer.SaveTrainer;
 
 public class TrainerController {
 

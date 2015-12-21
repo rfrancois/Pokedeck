@@ -1,8 +1,8 @@
-package View.Energy;
+package Terminal.View.Energy;
 
-import Controller.EnergyController;
-import Controller.PokemonController;
 import Model.Energy;
+import Terminal.Controller.EnergyController;
+import Terminal.Controller.PokemonController;
 
 public class UpdateEnergy extends SaveEnergy {
 	
