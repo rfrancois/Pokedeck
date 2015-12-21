@@ -14,7 +14,6 @@ import Model.Energy.EnergyTypes;
 
 public class Pokemon extends Card {
 
-	private static ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
 	private int health;
 	private int stage;
 	private ArrayList<Energy.EnergyTypes> energies;
@@ -44,15 +43,7 @@ public class Pokemon extends Card {
 		}
 		this.collectorCardNumber = collectorCardNumber;
 		this.expansionSymbol = expansionSymbol;
-		pokemons.add(this);
-	}
-
-	/**
-	 * All the deck
-	 * @return List of pokemons
-	 */
-	public static ArrayList<Pokemon> getPokemons() {
-		return pokemons;
+		cards.add(this);
 	}
 
 	public int getStage() {
@@ -224,46 +215,6 @@ public class Pokemon extends Card {
 			evolves.add(p);
 		}
 		return evolves;
-	}
-	
-	/**
-	 * Save deck
-	 */
-	public static void serialize() {
-		try
-		{
-			FileOutputStream fileOut = new FileOutputStream("data/pokemon.ser");
-			ObjectOutputStream out = new ObjectOutputStream(fileOut);
-			out.writeObject(pokemons);
-			out.close();
-			fileOut.close();
-		} catch(IOException ioe)
-		{
-			ioe.printStackTrace();
-		}
-	}
-
-	/**
-	 * Set deck
-	 */
-	public static void deserialize() {
-		try
-		{
-			FileInputStream fileIn = new FileInputStream("data/pokemon.ser");
-			ObjectInputStream in = new ObjectInputStream(fileIn);
-			pokemons = (ArrayList<Pokemon>) in.readObject();
-			in.close();
-			fileIn.close();
-		} catch(IOException ioe)
-		{
-			ioe.printStackTrace();
-			return;
-		} catch(ClassNotFoundException c)
-		{
-			System.out.println("Product class not found");
-			c.printStackTrace();
-			return;
-		}
 	}
 
 }

@@ -24,20 +24,16 @@ public class CardController {
 	 * @param choice Selected Card
 	 */
 	public void displayCards(int choice) {
-		ArrayList<Pokemon> pokemons = Pokemon.getPokemons();
-		ArrayList<Trainer> trainers = Trainer.getTrainers();
-		if(choice >= 0 && choice < pokemons.size()) {
-			v = new SavePokemon();
-			card = pokemons.get(choice);
-			return ;
-		}
-		else {
-			choice -= pokemons.size();
-			if(choice >= 0 && choice < trainers.size()) {
-				v = new SaveTrainer();
-				card = trainers.get(choice);
-				return ;
+		ArrayList<Card> cards = Card.getCards();
+		if(choice >= 0 && choice < cards.size()) {
+			if(card instanceof Pokemon) {
+				v = new SavePokemon();
 			}
+			else {
+				v = new SaveTrainer();
+			}
+			card = cards.get(choice);
+			return ;
 		}
 		v.constructGUI();
 	}

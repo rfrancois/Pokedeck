@@ -14,7 +14,7 @@ public class Main {
 		
 		//new Pokemon("test", 20, null, null, null, null, 0, 0);
 		//new Pokemon("test2", 20, null, null, null, null, 0, 0);
-		Pokemon.deserialize();
+		Card.deserialize();
 		
 		int choice, type;
 		Scanner sc = new Scanner(System.in);
@@ -24,7 +24,7 @@ public class Main {
 			System.out.println("Choisissez une action :\n"
 					+ "1 - Ajouter une carte\n"
 					+ "2 - Afficher le jeu\n"
-					+ "3 - Rechercher un pokemon\n"
+					+ "3 - Rechercher une carte\n"
 					+ "0 - Quitter le programme");
 			choice = sc.nextInt();
 			view = new SaveCard();
@@ -47,7 +47,7 @@ public class Main {
 			}
 		} while(choice != 0);
 		
-		Pokemon.serialize();
+		Card.serialize();
 	}
 
 }

@@ -19,14 +19,10 @@ public class ListCards extends SaveCard {
 	 */
 	public void constructGUI() {
 		Scanner sc = new Scanner(System.in);
-		ArrayList<Trainer> trainers = Trainer.getTrainers();
-		ArrayList<Pokemon> pokemons = Pokemon.getPokemons();
+		ArrayList<Card> cards = Card.getCards();
 		System.out.println("Sélectionnez un Pokemon pour le modifier :");
-		for(int i=0; i<pokemons.size(); i++) {
-			System.out.println(i+1 + " - " + pokemons.get(i).getName());
-		}
-		for(int i=0; i<trainers.size(); i++) {
-			System.out.println(i+pokemons.size()+1 + " - " + trainers.get(i).getName());
+		for(int i=0; i<cards.size(); i++) {
+			System.out.println(i+1 + " - " + cards.get(i).getName());
 		}
 		System.out.println("0 - Quitter la liste");
 		int choice = sc.nextInt();

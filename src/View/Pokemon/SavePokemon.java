@@ -186,7 +186,7 @@ public class SavePokemon extends SaveCard implements View {
 	 */
 	public Pokemon getPrevEvolve() {
 		Scanner sc = new Scanner(System.in);
-		ArrayList<Pokemon> pokemons = Pokemon.getPokemons();
+		ArrayList<Pokemon> pokemons = getPokemonsFromCards();
 		// If no pokemon was created, return null
 		if(pokemons.size() == 0) return null;
 		int index;		
@@ -213,7 +213,7 @@ public class SavePokemon extends SaveCard implements View {
 	 */
 	public Pokemon getNextEvolve(Pokemon preEvolve) {
 		Scanner sc = new Scanner(System.in);
-		ArrayList<Pokemon> pokemons = Pokemon.getPokemons();
+		ArrayList<Pokemon> pokemons = getPokemonsFromCards();
 		// If no pokemon was created, return null
 		if(pokemons.size() == 0) return null;
 		int index;
@@ -259,7 +259,7 @@ public class SavePokemon extends SaveCard implements View {
 		ArrayList<Pokemon> prevEvolves = pokemonController.getPokemon().getPrevEvolves();
 		ArrayList<Pokemon> nextEvolves = pokemonController.getPokemon().getNextEvolves();
 		Scanner sc = new Scanner(System.in);
-		ArrayList<Pokemon> pokemons = (ArrayList<Pokemon>) Pokemon.getPokemons().clone();
+		ArrayList<Pokemon> pokemons = (ArrayList<Pokemon>) Pokemon.getCards().clone();
 		// If no pokemon was created, return null
 		if(pokemons.size() == 0) return null;
 		int index;
@@ -355,5 +355,19 @@ public class SavePokemon extends SaveCard implements View {
 			return ;
 		}
 		update(pokemons.get(index-1));
+	}
+	
+	/**
+	 * Get Pokemon cards from the deck
+	 * @return List of poekmons
+	 */
+	public ArrayList<Pokemon> getPokemonsFromCards() {
+		ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
+		for(Card card : Card.getCards()) {
+	        if(card instanceof Pokemon) {
+	            pokemons.add((Pokemon) card);
+	        }
+	    }
+		return pokemons;
 	}
 }

@@ -10,7 +10,6 @@ public class Trainer extends Card implements Serializable {
 	}
 	private String text;
 	private String rule;
-	private static ArrayList<Trainer> trainers = new ArrayList<Trainer>();
 	private TrainerTypes type;
 	
 	public Trainer(String name, String text, String rule, TrainerTypes type) {
@@ -18,7 +17,7 @@ public class Trainer extends Card implements Serializable {
 		this.text = text;
 		this.rule = rule;
 		this.type = type;
-		trainers.add(this);
+		cards.add(this);
 	}
 	
 	public String getText() {
@@ -48,12 +47,7 @@ public class Trainer extends Card implements Serializable {
 	public void changeType(TrainerTypes type) {
 		this.type = type;
 	}
-
-	public static ArrayList<Trainer> getTrainers() {
-		// TODO Auto-generated method stub
-		return trainers;
-	}
-
+	
 	@Override
 	public String toString() {
 		return "Trainer " + super.getName() +  " [text=" + text + ", rule=" + rule + ", type=" + type

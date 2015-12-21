@@ -85,7 +85,7 @@ public class PokemonController {
 	 * @param search Search typed by user
 	 */
 	public void searchPokemon(String search) {
-		ArrayList<Pokemon> pokemons = Pokemon.getPokemons();
+		ArrayList<Pokemon> pokemons = v.getPokemonsFromCards();
 		ArrayList<Pokemon> match = new ArrayList<Pokemon>();
 		int compare;
 		for(Pokemon pokemon : pokemons) {

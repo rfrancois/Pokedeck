@@ -30,19 +30,19 @@ public class SaveTrainer extends SaveCard implements View {
 	public String getText() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Saisissez la description :");
-		return sc.next();
+		return sc.nextLine();
 	}
 
 	public String getName() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Entrez le nom de la carte entraineur :");
-		return sc.next();
+		return sc.nextLine();
 	}
 
 	public String getRule() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Saisissez la règle :");
-		return sc.next();
+		return sc.nextLine();
 	}
 	
 	private Trainer getData() {
