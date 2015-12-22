@@ -216,5 +216,15 @@ public class Pokemon extends Card {
 		}
 		return evolves;
 	}
+	
+	public ArrayList<Pokemon> getPokemons() {
+		ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
+		for(Card card : Card.getCards()) {
+	        if(card instanceof Pokemon) {
+	            pokemons.add((Pokemon) card);
+	        }
+	    }
+		return pokemons;
+	}
 
 }

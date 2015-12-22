@@ -20,7 +20,7 @@ public class Home extends SaveCard {
 	
 	public Home() {
 		controller = new HomeController(this);
-		init();
+		super.constructGUI();
 		setTitle("Accueil");
 		// To horizontally and vertically center panel
 		setLayout(new GridBagLayout());

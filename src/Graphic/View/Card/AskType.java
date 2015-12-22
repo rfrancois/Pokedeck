@@ -21,7 +21,7 @@ public class AskType extends SaveCard {
 	public AskType() {
 		controller = new CardController(this);
 		setTitle("Type du Pokemon");
-		init();
+		super.constructGUI();
 		
 		// To horizontally and vertically center panel
 		setLayout(new GridBagLayout());

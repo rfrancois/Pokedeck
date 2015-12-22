@@ -1,6 +1,7 @@
 package Graphic.View.Card;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 import Graphic.Controller.CardController;
 import Graphic.Controller.HomeController;
@@ -8,6 +9,7 @@ import Graphic.Controller.HomeController;
 public class SaveCard extends JFrame {
 	
 	protected CardController controller;
+	protected int textFieldSize = 15;
 	
 	/**
 	 * Add a new card
@@ -35,8 +37,8 @@ public class SaveCard extends JFrame {
 		dispose();
 	}
 	
-	public void init() {
-		setSize(500,300);
+	public void constructGUI() {
+		setSize(650,450);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// Center at the middle of the screen
 		setLocationRelativeTo(null);
