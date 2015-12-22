@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import Model.Card;
 import Model.Pokemon;
 import Model.Trainer;
-import Model.View;
 import Terminal.View.Card.SaveCard;
 import Terminal.View.Energy.SaveEnergy;
 import Terminal.View.Pokemon.SavePokemon;

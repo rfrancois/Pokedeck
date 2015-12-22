@@ -12,13 +12,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		//new Pokemon("test", 20, null, null, null, null, 0, 0);
-		//new Pokemon("test2", 20, null, null, null, null, 0, 0);
 		Card.deserialize();
 		
 		int choice, type;
 		Scanner sc = new Scanner(System.in);
-		View view;
+		SaveCard view;
 		
 		do {
 			System.out.println("Choisissez une action :\n"

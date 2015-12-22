@@ -8,12 +8,11 @@ import Model.Card;
 import Model.Energy;
 import Model.Energy.EnergyTypes;
 import Model.Pokemon;
-import Model.View;
 import Terminal.Main;
 import Terminal.Controller.PokemonController;
 import Terminal.View.Card.SaveCard;
 
-public class SavePokemon extends SaveCard implements View {
+public class SavePokemon extends SaveCard {
 
 	protected PokemonController pokemonController;
 	

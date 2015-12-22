@@ -6,11 +6,10 @@ import java.util.Scanner;
 import Model.Card;
 import Model.Energy;
 import Model.Energy.EnergyTypes;
-import Model.View;
 import Terminal.Controller.EnergyController;
 import Terminal.View.Card.SaveCard;
 
-public class SaveEnergy extends SaveCard implements View {
+public class SaveEnergy extends SaveCard {
 
 	protected EnergyController energyController;
 	

@@ -6,18 +6,16 @@ import java.util.Scanner;
 import Model.Card;
 import Model.Pokemon;
 import Model.Trainer;
-import Model.View;
 import Terminal.Controller.CardController;
 import Terminal.Controller.TrainerController;
 import Terminal.View.Energy.SaveEnergy;
 import Terminal.View.Pokemon.SavePokemon;
 import Terminal.View.Trainer.SaveTrainer;
 
-public class SaveCard implements View {
+public class SaveCard {
 
 	protected CardController cardController;
 
-	@Override
 	public void add() {
 		askType().add();
 	}
@@ -26,7 +24,6 @@ public class SaveCard implements View {
 	/**
 	 * Actions when user chooses to display all the deck
 	 */
-	@Override
 	public void list() {
 		ListCards display = new ListCards();
 		cardController = display.cardController;
@@ -35,18 +32,15 @@ public class SaveCard implements View {
 		if(card != null) update(card);
 	}
 
-	@Override
 	public void update(Card card) {
 		cardController.getV(card).update(card);
 	}
 
-	@Override
 	public void search() {
 		SearchCard search = new SearchCard();
 		search.constructGUI();
 	}
 	
-	@Override
 	public void delete(Card card) {
 		DeleteCard delete = new DeleteCard(card);
 		delete.constructGUI();
@@ -56,7 +50,7 @@ public class SaveCard implements View {
 	 * Ask type of Card
 	 * @return Card's view
 	 */
-	private View askType() {
+	private SaveCard askType() {
 		Scanner sc = new Scanner(System.in);
 		int choice;
 		System.out.println("Sélectionnez le type de carte :\n"
