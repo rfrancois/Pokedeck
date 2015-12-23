@@ -12,6 +12,14 @@ public class Attack implements Serializable {
 		this.damage = damage;
 	}
 
+	public String getName() {
+		return name;
+	}
+
+	public int getDamage() {
+		return damage;
+	}
+
 	@Override
 	public String toString() {
 		return "Attack [name=" + name + ", damage=" + damage + "]";

@@ -12,24 +12,6 @@ public class SaveCard extends JFrame {
 	protected int textFieldSize = 15;
 	
 	/**
-	 * Add a new card
-	 */
-	public void add() {
-		AskType askType = new AskType();
-	}
-	
-	public void update() {
-		System.out.println("SaveCard.update()");
-	}
-	
-	/**
-	 * Search a card in the deck
-	 */
-	public void search() {
-		System.out.println("SaveCard.search()");
-	}
-	
-	/**
 	 * Leave the program
 	 */
 	public void leave() {

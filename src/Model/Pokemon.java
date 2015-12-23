@@ -49,6 +49,14 @@ public class Pokemon extends Card {
 	public int getStage() {
 		return stage;
 	}
+	
+	public int getHealth() {
+		return health;
+	}
+	
+	public int getCollectorCardNumber() {
+		return collectorCardNumber;
+	}
 
 	public Attack[] getAttacks() {
 		return attacks;
@@ -175,8 +183,6 @@ public class Pokemon extends Card {
 			p.stage = 1;
 		}
 		stage = 1;
-		System.out.println("trol2 " + evolve.getName());
-
 	}
 
 	public void changeCollectorCardNumber(int collectorCardNumber) {
