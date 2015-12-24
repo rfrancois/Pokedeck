@@ -85,10 +85,16 @@ public class PokemonController implements ActionListener {
 			v.getLabelInfoMessage().setText("Le nombre de dommage de la deuxième doit être une valeur numérique");
 			return ;
 		}
-		v.leave();
+		int prevEvolve = v.getPrevEvolve().getSelectedIndex();
+		int nextEvolve = v.getNextEvolve().getSelectedIndex();
+		if(prevEvolve > 0 && nextEvolve > 0 && prevEvolve == nextEvolve) {
+			v.getLabelInfoMessage().setText("Les évolutions ne peuvent pas être les mêmes");
+			return ;
+		}
 		// Action delivered by button
 		switch(e.getActionCommand()) {
 			case "addPokemon":
+				v.leave();
 				new UpdatePokemon(
 					new Pokemon(
 							name, 
@@ -98,17 +104,35 @@ public class PokemonController implements ActionListener {
 								new Attack(attackName1, attackDamage1), 
 								new Attack(attackName2, attackDamage2)
 							},
-							null, 
-							null, 
+							getEvolve(prevEvolve), 
+							getEvolve(nextEvolve), 
 							collectorCardNumber, 
 							0
-					)
+					),
+					"Le Pokemon a été ajouté"
 				);
 				break;
 			case "updatePokemon":
-				System.out.println("PokemonController - updatePokemon");
+				pokemon.changeName(name);
+				pokemon.changeHealth(health);
+				pokemon.changeEnergies(energies);
+				pokemon.changeAttacks(
+					new Attack[] {
+						new Attack(attackName1, attackDamage1), 
+						new Attack(attackName2, attackDamage2)
+					}
+				);
+				pokemon.changeCollectorCardNumber(collectorCardNumber);
+				if(prevEvolve != 0) {
+					pokemon.changePrevEvolve(getEvolve(prevEvolve));
+				}
+				if(nextEvolve != 0) {
+					pokemon.changeNextEvolve(getEvolve(nextEvolve));
+				}
+				v.getLabelInfoMessage().setText("Le Pokemon a été modifié");
 				break;
 			case "deletePokemon":
+				v.leave();
 				System.out.println("PokemonController - deletePokemon");
 				break;
 			default:
@@ -126,6 +150,17 @@ public class PokemonController implements ActionListener {
 			return 0;  
 		}
 		return number;
+	}
+	
+	/**
+	 * Convert given index to evolve of Pokemon
+	 * @param index Pokemon id
+	 * @return A pokemon
+	 */
+	private Pokemon getEvolve(int index) {
+		ArrayList<Pokemon> pokemons = Pokemon.getPokemonsFromCards();
+		if(index <= 0 || index > pokemons.size()) return null;
+		return pokemons.get(index-1);
 	}
 	
 	public Pokemon getPokemon() {

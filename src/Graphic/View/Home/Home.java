@@ -39,7 +39,7 @@ public class Home extends SaveCard {
 		
 		// Action to call
 		buttonAdd.setActionCommand("add");
-		buttonDisplay.setActionCommand("update");
+		buttonDisplay.setActionCommand("display");
 		buttonSearch.setActionCommand("search");
 		buttonLeave.setActionCommand("leave");
 		

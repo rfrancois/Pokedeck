@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 
 import Graphic.Controller.PokemonController;
+import Model.Card;
 import Model.Energy;
 import Model.Energy.EnergyTypes;
 import Model.Pokemon;
@@ -20,6 +21,11 @@ public class UpdatePokemon extends SavePokemon {
 		constructGUI();
 	}
 	
+	public UpdatePokemon(Pokemon pokemon, String infoMessage) {
+		this(pokemon);
+		labelInfoMessage.setText(infoMessage);
+	}
+
 	public void constructGUI() {
 		setTitle("Modifier le Pokemon");
 		buttonUpdate.setActionCommand("updatePokemon");
@@ -32,7 +38,7 @@ public class UpdatePokemon extends SavePokemon {
 		
 		Pokemon pokemon = controller.getPokemon();
 		// Field inputs
-		labelInfoMessage.setText("Le Pokemon a correctement été ajouté");
+		textStage.setText(String.valueOf(pokemon.getStage()));
 		textName.setText(pokemon.getName());
 		textCollectorCardNumber.setText(String.valueOf(pokemon.getCollectorCardNumber()));
 		textHealth.setText(String.valueOf(pokemon.getHealth()));
@@ -46,6 +52,9 @@ public class UpdatePokemon extends SavePokemon {
 			indexes[i] = listModel.indexOf(pokemon.getEnergiesTypes().get(i));
 		}
 		listEnergies.setSelectedIndices(indexes);
+		ArrayList<Pokemon> pokemons = pokemon.getPokemonsFromCards();
+		prevEvolve.setSelectedIndex(pokemons.indexOf(pokemon.getPrevEvolve())+1);
+		nextEvolve.setSelectedIndex(pokemons.indexOf(pokemon.getNextEvolve())+1);
 	}
 
 }

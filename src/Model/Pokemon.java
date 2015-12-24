@@ -39,7 +39,7 @@ public class Pokemon extends Card {
 		this.nextEvolve = nextEvolve;
 		if(nextEvolve != null) {
 			nextEvolve.prevEvolve = this;
-			setNextStages();
+			setNextStages(stage);
 		}
 		this.collectorCardNumber = collectorCardNumber;
 		this.expansionSymbol = expansionSymbol;
@@ -133,10 +133,12 @@ public class Pokemon extends Card {
 	 * @param nextEvolve Next evolve pokemon
 	 */
 	public void changeNextEvolve(Pokemon nextEvolve) {
-		checkInPrevEvolves(nextEvolve);
-		checkInNextEvolves(nextEvolve);
+		if(!PrevEvolvePathIsCorrect(this.prevEvolve, nextEvolve))  {
+			return ;
+		}
 		this.nextEvolve = nextEvolve;
 		this.nextEvolve.prevEvolve = this;
+		setStage();
 		setNextStages(stage);
 	}
 	
@@ -145,44 +147,21 @@ public class Pokemon extends Card {
 	 * @param prevEvolve Previous evolve pokemon
 	 */
 	public void changePrevEvolve(Pokemon prevEvolve) {
-		checkInPrevEvolves(prevEvolve);
-		checkInNextEvolves(prevEvolve);
+		if(!PrevEvolvePathIsCorrect(this.prevEvolve, nextEvolve))  {
+			return ;
+		}
 		this.prevEvolve = prevEvolve;
-		prevEvolve.nextEvolve = this;
-		prevEvolve.setNextStages(prevEvolve.stage);
+		this.prevEvolve.nextEvolve = this;
+		setStage();
+		setNextStages(stage);
 	}
-
-	/**
-	 * Delete all links between Pokemons if new evolve is in previous evolves
-	 * @param evolve A pokemon
-	 */
-	private void checkInPrevEvolves(Pokemon evolve) {
-		if(!getPrevEvolves().contains(evolve)) return ;
-		Pokemon p = this;
-		while(p.prevEvolve != null) {
-			p = p.prevEvolve;
-			p.nextEvolve.prevEvolve = null;
-			p.nextEvolve = null;
-			p.stage = 1;
+	
+	private boolean PrevEvolvePathIsCorrect(Pokemon prevEvolve, Pokemon pokemon) {
+		while(prevEvolve != null) {
+			if(prevEvolve == pokemon) return false;
+			prevEvolve = prevEvolve.prevEvolve;
 		}
-		stage = 1;
-		System.out.println("trol1 " + evolve.getName());
-	}
-
-	/**
-	 * Delete all links between Pokemons if new evolve is in next evolves
-	 * @param evolve A pokemon
-	 */
-	private void checkInNextEvolves(Pokemon evolve) {
-		if(!getNextEvolves().contains(evolve)) return ; 
-		Pokemon p = this;
-		while(p.nextEvolve != null) {
-			p = p.nextEvolve;
-			p.prevEvolve.nextEvolve = null;
-			p.prevEvolve = null;
-			p.stage = 1;
-		}
-		stage = 1;
+		return true;
 	}
 
 	public void changeCollectorCardNumber(int collectorCardNumber) {
@@ -231,6 +210,28 @@ public class Pokemon extends Card {
 	        }
 	    }
 		return pokemons;
+	}
+	
+	/**
+	 * Get Pokemon cards from the deck
+	 * @return List of poekmons
+	 */
+	public static ArrayList<Pokemon> getPokemonsFromCards() {
+		ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
+		for(Card card : Card.getCards()) {
+	        if(card instanceof Pokemon) {
+	            pokemons.add((Pokemon) card);
+	        }
+	    }
+		return pokemons;
+	}
+
+	public Pokemon getPrevEvolve() {
+		return prevEvolve;
+	}
+
+	public Pokemon getNextEvolve() {
+		return nextEvolve;
 	}
 
 }

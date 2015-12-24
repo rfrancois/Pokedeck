@@ -16,17 +16,21 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
 import Graphic.Controller.PokemonController;
 import Graphic.View.Card.SaveCard;
 import Model.Energy;
 import Model.Energy.EnergyTypes;
+import Model.Pokemon;
 import javafx.scene.layout.PaneBuilder;
 
 public class SavePokemon extends SaveCard {
 
 	protected PokemonController controller;
 
+	protected JLabel labelStage = new JLabel("Stage");
+	protected JLabel textStage = new JLabel("Non identifié");
 	protected JLabel labelInfoMessage = new JLabel();
 	protected JLabel labelName = new JLabel("Nom");
 	protected JTextField textName = new JTextField(textFieldSize);
@@ -46,8 +50,12 @@ public class SavePokemon extends SaveCard {
 	protected DefaultListModel<EnergyTypes> listModel = new DefaultListModel<EnergyTypes>();
 	protected JList<EnergyTypes> listEnergies = new JList<EnergyTypes>(listModel);
 	protected JScrollPane selectEnergies = new JScrollPane(listEnergies);
-	protected JComboBox prevEvolve = new JComboBox();
+	protected JLabel labelPrevEvolve = new JLabel("Evolution précédente");
+	protected JComboBox<String> prevEvolve = new JComboBox<String>();
+	protected JLabel labelNextEvolve = new JLabel("Evolution suivante");
+	protected JComboBox<String> nextEvolve = new JComboBox<String>();
 	protected JLabel[] labels = new JLabel[]{
+			labelStage,
 			labelName, 
 			labelCollectorCardNumber,
 			labelHealth,
@@ -55,9 +63,12 @@ public class SavePokemon extends SaveCard {
 			labelAttackName1, 
 			labelAttackDamage1,
 			labelAttackName2,
-			labelAttackDamage2
+			labelAttackDamage2,
+			labelPrevEvolve,
+			labelNextEvolve
 	};
 	protected JComponent[] texts = new JComponent[]{
+			textStage,
 			textName,
 			textCollectorCardNumber,
 			textHealth,
@@ -65,12 +76,15 @@ public class SavePokemon extends SaveCard {
 			textAttackName1,
 			textAttackDamage1,
 			textAttackName2,
-			textAttackDamage2
+			textAttackDamage2,
+			prevEvolve,
+			nextEvolve
 	};
 	protected ArrayList<JButton> buttons = new ArrayList<JButton>();
 
 	public void constructGUI() {
 		super.constructGUI();
+		
 		// Label alignment
 		for(JLabel label : labels) {
 			label.setHorizontalAlignment(JLabel.RIGHT);
@@ -80,6 +94,13 @@ public class SavePokemon extends SaveCard {
 		}
 		// Visible rows
 		listEnergies.setVisibleRowCount(4);
+		
+		prevEvolve.addItem("");
+		nextEvolve.addItem("");
+		for(Pokemon pokemon : Pokemon.getPokemonsFromCards()) {
+			prevEvolve.addItem(pokemon.getName());
+			nextEvolve.addItem(pokemon.getName());
+		}
 
 		// To horizontally and vertically center panel
 		setLayout(new GridBagLayout());
@@ -180,6 +201,14 @@ public class SavePokemon extends SaveCard {
 
 	public JLabel getLabelInfoMessage() {
 		return labelInfoMessage;
+	}
+
+	public JComboBox<String> getPrevEvolve() {
+		return prevEvolve;
+	}
+
+	public JComboBox<String> getNextEvolve() {
+		return nextEvolve;
 	}
 
 }

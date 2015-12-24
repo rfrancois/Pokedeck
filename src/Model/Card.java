@@ -74,4 +74,25 @@ public class Card implements Serializable {
 		}
 	}
 	
+	/**
+	 * Search a card Name in the deck
+	 * @param search Search request by user
+	 * @return List of cards or null if no match was found
+	 */
+	public static ArrayList<Card> search(String search) {
+		ArrayList<Card> match = new ArrayList<Card>();
+		int compare;
+		for(Card card : cards) {
+			compare = search.compareToIgnoreCase(card.getName());
+			// Allow mistakes in the search
+			if(compare >= -5 && compare <= 5) {
+				match.add(card);
+			}
+		}
+		if(match.size() == 0) { 
+			return null;
+		}
+		return match;
+	}
+	
 }
