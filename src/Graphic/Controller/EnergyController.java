@@ -3,12 +3,10 @@ package Graphic.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Graphic.View.Card.SaveCard;
 import Graphic.View.Energy.SaveEnergy;
 import Graphic.View.Energy.UpdateEnergy;
 import Model.Energy;
 import Model.Energy.EnergyTypes;
-import Model.Trainer.TrainerTypes;
 
 public class EnergyController extends SuperController implements ActionListener {
 	
@@ -26,7 +24,7 @@ public class EnergyController extends SuperController implements ActionListener 
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(returnToList(e, v)) return ;
+		if(returnPrevPage(e, v)) return ;
 		EnergyTypes type = v.getListTypes().getSelectedValue();
 		if(type == null) {
 			v.getLabelInfoMessage().setText("Il faut sélectionner un type d'energie");
@@ -40,6 +38,11 @@ public class EnergyController extends SuperController implements ActionListener 
 		case "updateEnergy":
 			energy.changeEnergy(type);
 			v.getLabelInfoMessage().setText("L'energie a été modifiée");
+			break;
+		case "deleteEnergy":
+			v.leave();
+			v.delete(energy);
+			afterDelete(v);
 			break;
 		default:
 			System.out.println("Une erreur est survenue dans Graphic.Controller.EnergyController.");

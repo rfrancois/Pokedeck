@@ -13,15 +13,11 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
 import Graphic.Controller.EnergyController;
 import Graphic.View.Card.SaveCard;
 import Model.Energy.EnergyTypes;
-import Model.Trainer;
-import Model.Trainer.TrainerTypes;
 
 public class SaveEnergy extends SaveCard {
 

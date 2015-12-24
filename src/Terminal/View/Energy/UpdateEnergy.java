@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 import Model.Energy;
 import Terminal.Controller.EnergyController;
-import Terminal.Controller.PokemonController;
 
 public class UpdateEnergy extends SaveEnergy {
 	
@@ -12,6 +11,9 @@ public class UpdateEnergy extends SaveEnergy {
 		energyController = new EnergyController(energy, this);
 	}
 	
+	/**
+	 * Show messages on the terminal to invite user to make its choice on the keyboard
+	 */
 	public void constructGUI() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Sélectionnez une energie pour la carte :");

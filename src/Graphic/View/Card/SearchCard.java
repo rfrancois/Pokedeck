@@ -1,7 +1,6 @@
 package Graphic.View.Card;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 
@@ -27,6 +26,7 @@ public class SearchCard extends SaveCard {
 		textSearch.setText(search);
 	}
 	
+	@Override
 	public void constructGUI() {
 		setTitle("Rechercher une carte");
 		// To horizontally and vertically center panel

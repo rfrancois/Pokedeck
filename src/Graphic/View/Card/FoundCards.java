@@ -10,7 +10,11 @@ public class FoundCards extends DisplayCards {
 	public FoundCards(ArrayList<Card> cards) {
 		controller = new CardController(this, cards);
 		constructGUI();
-		//buttonLeave.setActionCommand("returnSearch");
+	}
+	
+	public FoundCards(ArrayList<Card> cards, SaveCard prevView) {
+		this(cards);
+		this.prevView = prevView;
 	}
 
 }

@@ -1,14 +1,12 @@
 package Graphic.View.Card;
 
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JTextField;
 
 import Graphic.Controller.CardController;
-import Graphic.Controller.HomeController;
 import Graphic.View.Energy.UpdateEnergy;
-import Graphic.View.Home.Home;
 import Graphic.View.Pokemon.UpdatePokemon;
 import Graphic.View.Trainer.UpdateTrainer;
 import Model.Card;
@@ -39,6 +37,14 @@ public class SaveCard extends JFrame {
 	}
 	
 	/**
+	 * Delete a card from the deck
+	 * @param card Card to delete
+	 */
+	public void delete(Card card) {
+		Card.getCards().remove(card);
+	}
+	
+	/**
 	 * Leave the program
 	 */
 	public void leave() {
@@ -46,6 +52,9 @@ public class SaveCard extends JFrame {
 		dispose();
 	}
 	
+	/**
+	 * Construct fields, buttons which have to be shown to the user
+	 */
 	public void constructGUI() {
 		setSize(750,550);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,6 +71,10 @@ public class SaveCard extends JFrame {
 		return -1;
 	}
 	
+	/**
+	 * Return nothing to warn of an error
+	 * @return An error
+	 */
 	public JTextField getTextSearch() {
 		return null;
 	}
@@ -72,5 +85,13 @@ public class SaveCard extends JFrame {
 	 */
 	public SaveCard getPrevView() {
 		return prevView;
+	}
+	
+	/**
+	 * Get list of cards used by controller
+	 * @return List of cards
+	 */
+	public ArrayList<Card> getData() {
+		return controller.getCards();
 	}
 }

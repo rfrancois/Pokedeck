@@ -11,11 +11,11 @@ import Graphic.View.Home.Home;
 public class SuperController {
 
 	/**
-	 * Don't go to the home page, but to the list or the search result
+	 * Don't go to the home page, but to the previous page
 	 * @param e Action command
 	 * @param v Current view
 	 */
-	public boolean returnToList(ActionEvent e, SaveCard v) {
+	public boolean returnPrevPage(ActionEvent e, SaveCard v) {
 		if(e.getActionCommand() == "leave") {
 			v.leave();
 			// Make visible previous view
@@ -23,9 +23,13 @@ public class SuperController {
 				v.getPrevView().leave();
 				new AllCards();
 			}
+			else if(v.getPrevView() instanceof SearchCard) {
+				//System.out.println(v.prev);
+				new SearchCard(v.getPrevView().getTextSearch().getText());
+			}
 			else if(v.getPrevView() instanceof FoundCards) {
 				v.getPrevView().leave();
-				new SearchCard(v.getPrevView().getTextSearch().getText());
+				new FoundCards(v.getPrevView().getData());
 			}
 			// Return Home
 			else {
@@ -35,5 +39,26 @@ public class SuperController {
 			return true;
 		}
 		return false;
+	}
+	
+	/**
+	 * Call this function after a delete to open home page or a previous page like a search list
+	 * @param v Current view
+	 */
+	public void afterDelete(SaveCard v) {
+		// Make visible previous view
+		if(v.getPrevView() instanceof AllCards) {
+			v.getPrevView().leave();
+			new AllCards();
+		}
+		else if(v.getPrevView() instanceof FoundCards) {
+			v.getPrevView().leave();
+			new FoundCards(v.getPrevView().getData());
+		}
+		// Return Home
+		else {
+			v.leave();
+			new Home();
+		}
 	}
 }

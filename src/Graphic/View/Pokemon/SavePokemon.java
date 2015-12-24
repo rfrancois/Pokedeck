@@ -1,7 +1,5 @@
 package Graphic.View.Pokemon;
 
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -16,14 +14,11 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 
 import Graphic.Controller.PokemonController;
 import Graphic.View.Card.SaveCard;
-import Model.Energy;
 import Model.Energy.EnergyTypes;
 import Model.Pokemon;
-import javafx.scene.layout.PaneBuilder;
 
 public class SavePokemon extends SaveCard {
 
@@ -98,7 +93,7 @@ public class SavePokemon extends SaveCard {
 		
 		prevEvolve.addItem("");
 		nextEvolve.addItem("");
-		for(Pokemon pokemon : Pokemon.getPokemonsFromCards()) {
+		for(Pokemon pokemon : Pokemon.getPokemons()) {
 			prevEvolve.addItem(pokemon.getName());
 			nextEvolve.addItem(pokemon.getName());
 		}

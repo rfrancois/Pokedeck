@@ -1,10 +1,7 @@
 package Terminal.View.Pokemon;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
-import Model.Attack;
-import Model.Energy;
 import Model.Pokemon;
 import Terminal.Controller.PokemonController;
 
@@ -14,6 +11,9 @@ public class UpdatePokemon extends SavePokemon {
 		pokemonController = new PokemonController(pokemon, this);
 	}
 
+	/**
+	 * Show messages on the terminal to invite user to make its choice on the keyboard
+	 */
 	public void constructGUI() {
 		Scanner sc = new Scanner(System.in);
 		int choice;

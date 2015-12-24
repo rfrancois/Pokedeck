@@ -3,14 +3,16 @@ package Terminal.View.Trainer;
 import java.util.Scanner;
 
 import Model.Card;
-import Model.Pokemon;
 import Model.Trainer;
 import Model.Trainer.TrainerTypes;
 import Terminal.Controller.TrainerController;
 import Terminal.View.Card.SaveCard;
-import Terminal.View.Pokemon.AddPokemon;
-import Terminal.View.Pokemon.UpdatePokemon;
 
+/**
+ * Get Informations of a trainer
+ * @author Romain
+ *
+ */
 public class SaveTrainer extends SaveCard {
 	
 	protected TrainerController trainerController;
@@ -51,13 +53,11 @@ public class SaveTrainer extends SaveCard {
 	@Override
 	public void add() {
 		AddTrainer add = new AddTrainer();
-		//update(add.getData());
 	}
 
 	@Override
 	public void list() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -69,7 +69,6 @@ public class SaveTrainer extends SaveCard {
 	@Override
 	public void search() {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

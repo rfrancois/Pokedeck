@@ -6,9 +6,6 @@ import javax.swing.JButton;
 
 import Graphic.Controller.PokemonController;
 import Graphic.View.Card.SaveCard;
-import Model.Card;
-import Model.Energy;
-import Model.Energy.EnergyTypes;
 import Model.Pokemon;
 
 public class UpdatePokemon extends SavePokemon {
@@ -51,7 +48,7 @@ public class UpdatePokemon extends SavePokemon {
 			indexes[i] = listModel.indexOf(pokemon.getEnergiesTypes().get(i));
 		}
 		listEnergies.setSelectedIndices(indexes);
-		ArrayList<Pokemon> pokemons = pokemon.getPokemonsFromCards();
+		ArrayList<Pokemon> pokemons = pokemon.getPokemons();
 		prevEvolve.setSelectedIndex(pokemons.indexOf(pokemon.getPrevEvolve())+1);
 		nextEvolve.setSelectedIndex(pokemons.indexOf(pokemon.getNextEvolve())+1);
 	}

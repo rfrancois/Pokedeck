@@ -10,6 +10,9 @@ public class SearchCard extends SaveCard {
 		cardController = new CardController(this);
 	}
 	
+	/**
+	 * Show messages on the terminal to invite user to make its choice on the keyboard
+	 */
 	public void constructGUI() {
 		Scanner sc = new Scanner(System.in);
 		String name;

@@ -3,7 +3,6 @@ package Graphic.View.Energy;
 import javax.swing.JButton;
 
 import Graphic.Controller.EnergyController;
-import Graphic.View.Card.SaveCard;
 
 public class AddEnergy extends SaveEnergy {
 	

@@ -11,6 +11,9 @@ public class DeleteCard extends SaveCard {
 		cardController = new CardController(card, this);
 	}
 	
+	/**
+	 * Show messages on the terminal to invite user to make its choice on the keyboard
+	 */
 	public void constructGUI() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Etes vous sûr de vouloir supprimer la carte " + cardController.getCard().getName() + " ?\n"

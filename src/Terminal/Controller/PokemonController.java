@@ -1,8 +1,5 @@
 package Terminal.Controller;
 
-import java.awt.event.ActionEvent;
-import java.util.ArrayList;
-
 import Model.*;
 import Terminal.View.Pokemon.*;
 
@@ -20,18 +17,18 @@ public class PokemonController {
 		this.pokemon = pokemon;
 	}
 
-	/*public void actionPerformed(ActionEvent evt) {
-		Object source = evt.getSource();
-		if (source == v.getUpdateRef()) {
-			updateModel();
-		}
-	}*/
-
+	/**
+	 * Add a new pokemon
+	 */
 	public void addPokemon() {
 		Pokemon prevEvolve;
 		pokemon = new Pokemon(v.getName(), v.getHealth(), v.getEnergyType(), new Attack[]{new Attack(v.getAttackName(), v.getAttackDamage()), new Attack(v.getAttackName(), v.getAttackDamage())}, prevEvolve = v.getPrevEvolve(), v.getNextEvolve(prevEvolve), v.getCollectorCardNumber(), v.getExpansionSymbol());
 	}
 
+	/**
+	 * Update a pokemon
+	 * @param choice Pokemon's index
+	 */
 	public void updatePokemon(int choice) {
 		switch(choice) {
 		case 0:

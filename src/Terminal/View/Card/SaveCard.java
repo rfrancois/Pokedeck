@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Model.Card;
-import Model.Pokemon;
-import Model.Trainer;
 import Terminal.Controller.CardController;
-import Terminal.Controller.TrainerController;
 import Terminal.View.Energy.SaveEnergy;
 import Terminal.View.Pokemon.SavePokemon;
 import Terminal.View.Trainer.SaveTrainer;
@@ -32,15 +29,26 @@ public class SaveCard {
 		if(card != null) update(card);
 	}
 
+	/**
+	 * Update a card
+	 * @param card A card
+	 */
 	public void update(Card card) {
 		cardController.getV(card).update(card);
 	}
 
+	/**
+	 * Search a card in the deck
+	 */
 	public void search() {
 		SearchCard search = new SearchCard();
 		search.constructGUI();
 	}
 	
+	/**
+	 * Delete a card from the deck
+	 * @param card A card
+	 */
 	public void delete(Card card) {
 		DeleteCard delete = new DeleteCard(card);
 		delete.constructGUI();

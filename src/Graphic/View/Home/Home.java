@@ -4,7 +4,6 @@ import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Graphic.Controller.HomeController;
@@ -18,6 +17,9 @@ public class Home extends SaveCard {
 	private JButton buttonSearch = new JButton("Rechercher une carte");
 	private JButton buttonLeave = new JButton("Quitter le programme");
 	
+	/**
+	 * Build home page
+	 */
 	public Home() {
 		controller = new HomeController(this);
 		super.constructGUI();

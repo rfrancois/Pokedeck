@@ -18,6 +18,9 @@ public class EnergyController {
 		this.energy = energy;
 	}
 
+	/**
+	 * Add a new energy
+	 */
 	public void addEnergy() {
 		EnergyTypes energy = v.getEnergy();
 		if(energy != null) {
@@ -33,6 +36,10 @@ public class EnergyController {
 		return v;
 	}
 
+	/**
+	 * Update an energy
+	 * @param energy An energy
+	 */
 	public void updateEnergy(EnergyTypes energy) {
 		if(energy != null) {
 			this.energy.changeEnergy(energy);

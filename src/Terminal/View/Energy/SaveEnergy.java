@@ -1,6 +1,5 @@
 package Terminal.View.Energy;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 import Model.Card;
@@ -9,6 +8,11 @@ import Model.Energy.EnergyTypes;
 import Terminal.Controller.EnergyController;
 import Terminal.View.Card.SaveCard;
 
+/**
+ * Get informations of an energy
+ * @author Romain
+ *
+ */
 public class SaveEnergy extends SaveCard {
 
 	protected EnergyController energyController;
@@ -26,10 +30,16 @@ public class SaveEnergy extends SaveCard {
 		return Energy.EnergyTypes.values()[index-1];
 	}
 	
+	/**
+	 * Add an energy
+	 */
 	public void add() {
 		AddEnergy add = new AddEnergy();
 	}
 	
+	/**
+	 * Update an energy
+	 */
 	public void update(Card card) {
 		UpdateEnergy update = new UpdateEnergy((Energy) card);
 		update.constructGUI();

@@ -6,12 +6,15 @@ import java.util.Scanner;
 import Model.Attack;
 import Model.Card;
 import Model.Energy;
-import Model.Energy.EnergyTypes;
 import Model.Pokemon;
-import Terminal.Main;
 import Terminal.Controller.PokemonController;
 import Terminal.View.Card.SaveCard;
 
+/**
+ * Get informations of a pokemon
+ * @author Romain
+ *
+ */
 public class SavePokemon extends SaveCard {
 
 	protected PokemonController pokemonController;
@@ -170,7 +173,7 @@ public class SavePokemon extends SaveCard {
 	 */
 	public Pokemon getPrevEvolve() {
 		Scanner sc = new Scanner(System.in);
-		ArrayList<Pokemon> pokemons = getPokemonsFromCards();
+		ArrayList<Pokemon> pokemons = Pokemon.getPokemons();
 		// If no pokemon was created, return null
 		if(pokemons.size() == 0) return null;
 		int index;		
@@ -197,7 +200,7 @@ public class SavePokemon extends SaveCard {
 	 */
 	public Pokemon getNextEvolve(Pokemon preEvolve) {
 		Scanner sc = new Scanner(System.in);
-		ArrayList<Pokemon> pokemons = getPokemonsFromCards();
+		ArrayList<Pokemon> pokemons = Pokemon.getPokemons();
 		// If no pokemon was created, return null
 		if(pokemons.size() == 0) return null;
 		int index;
@@ -281,26 +284,6 @@ public class SavePokemon extends SaveCard {
 		if(index == 0) return null;
 		// Set pokemon by its index
 		pokemon = pokemons.get(index-1);
-		// check if user didn't select a previous evolve
-		/*if(prevEvolves.contains(pokemon) || nextEvolves.contains(pokemon)) {
-			System.out.println("Vous ne pouvez pas selectionner un Pokemon qui est déjà une évolution.");
-			// Recall function
-			return getNextEvolve();
-		}*/
 		return pokemon;
-	}
-	
-	/**
-	 * Get Pokemon cards from the deck
-	 * @return List of poekmons
-	 */
-	public ArrayList<Pokemon> getPokemonsFromCards() {
-		ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
-		for(Card card : Card.getCards()) {
-	        if(card instanceof Pokemon) {
-	            pokemons.add((Pokemon) card);
-	        }
-	    }
-		return pokemons;
 	}
 }

@@ -3,10 +3,6 @@ package Graphic.Controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import Graphic.View.Card.AllCards;
-import Graphic.View.Card.AskType;
-import Graphic.View.Card.FoundCards;
-import Graphic.View.Home.Home;
 import Graphic.View.Trainer.SaveTrainer;
 import Graphic.View.Trainer.UpdateTrainer;
 import Model.Trainer;
@@ -28,7 +24,7 @@ public class TrainerController extends SuperController implements ActionListener
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(returnToList(e, v)) return ;
+		if(returnPrevPage(e, v)) return ;
 		String name = v.getTextName().getText();
 		if(name.isEmpty()) {
 			v.getLabelInfoMessage().setText("Le nom est obligatoire");
@@ -63,7 +59,8 @@ public class TrainerController extends SuperController implements ActionListener
 			break;
 		case "deleteTrainer":
 			v.leave();
-			System.out.println("TrainerController - deleteTrainer");
+			v.delete(trainer);
+			afterDelete(v);
 			break;
 		default:
 			v.leave();

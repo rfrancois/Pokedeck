@@ -1,14 +1,6 @@
 package Model;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import com.oracle.jrockit.jfr.Producer;
 
 import Model.Energy.EnergyTypes;
 
@@ -36,10 +28,12 @@ public class Pokemon extends Card {
 			prevEvolve.nextEvolve = this;
 		}
 		setStage();
-		this.nextEvolve = nextEvolve;
-		if(nextEvolve != null) {
-			nextEvolve.prevEvolve = this;
-			setNextStages(stage);
+		if(PrevEvolvePathIsCorrect(prevEvolve, nextEvolve)) {
+			this.nextEvolve = nextEvolve;
+			if(nextEvolve != null) {
+				nextEvolve.prevEvolve = this;
+				setNextStages(stage);
+			}
 		}
 		this.collectorCardNumber = collectorCardNumber;
 		this.expansionSymbol = expansionSymbol;
@@ -105,17 +99,6 @@ public class Pokemon extends Card {
 		}
 	}
 
-	/**
-	 * Increment all stage of next evolves
-	 */
-	private void setNextStages() {
-		Pokemon p = this;
-		while(p.nextEvolve != null) {
-			p = p.nextEvolve;
-			p.stage++;
-		}
-	}
-
 	public void changeHealth(int newHealth) {
 		this.health = newHealth;
 	}
@@ -132,30 +115,38 @@ public class Pokemon extends Card {
 	 * Update pokemon's next evolve
 	 * @param nextEvolve Next evolve pokemon
 	 */
-	public void changeNextEvolve(Pokemon nextEvolve) {
+	public boolean changeNextEvolve(Pokemon nextEvolve) {
 		if(!PrevEvolvePathIsCorrect(this.prevEvolve, nextEvolve))  {
-			return ;
+			return false;
 		}
 		this.nextEvolve = nextEvolve;
 		this.nextEvolve.prevEvolve = this;
 		setStage();
 		setNextStages(stage);
+		return true;
 	}
 	
 	/**
 	 * Update pokemon's previous evolve
 	 * @param prevEvolve Previous evolve pokemon
 	 */
-	public void changePrevEvolve(Pokemon prevEvolve) {
+	public boolean changePrevEvolve(Pokemon prevEvolve) {
 		if(!PrevEvolvePathIsCorrect(this.prevEvolve, nextEvolve))  {
-			return ;
+			return false;
 		}
 		this.prevEvolve = prevEvolve;
 		this.prevEvolve.nextEvolve = this;
 		setStage();
 		setNextStages(stage);
+		return true;
 	}
 	
+	/**
+	 * Check if nextEvolve is not already in previous evolves
+	 * @param prevEvolve Previous Evolves path to explore
+	 * @param pokemon Next Evolve
+	 * @return false if the requested next evolve is already in previous evolves
+	 */
 	private boolean PrevEvolvePathIsCorrect(Pokemon prevEvolve, Pokemon pokemon) {
 		while(prevEvolve != null) {
 			if(prevEvolve == pokemon) return false;
@@ -202,7 +193,11 @@ public class Pokemon extends Card {
 		return evolves;
 	}
 	
-	public ArrayList<Pokemon> getPokemons() {
+	/**
+	 * Get Pokemon cards from the deck
+	 * @return List of poekmons
+	 */
+	public static ArrayList<Pokemon> getPokemons() {
 		ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
 		for(Card card : Card.getCards()) {
 	        if(card instanceof Pokemon) {
@@ -213,17 +208,21 @@ public class Pokemon extends Card {
 	}
 	
 	/**
-	 * Get Pokemon cards from the deck
-	 * @return List of poekmons
+	 * When a pokemon is deleting, do operation not to corrupt stages order
 	 */
-	public static ArrayList<Pokemon> getPokemonsFromCards() {
-		ArrayList<Pokemon> pokemons = new ArrayList<Pokemon>();
-		for(Card card : Card.getCards()) {
-	        if(card instanceof Pokemon) {
-	            pokemons.add((Pokemon) card);
-	        }
-	    }
-		return pokemons;
+	public void beforeDeletePokemon() {
+		if(nextEvolve != null && prevEvolve != null) {
+			nextEvolve.prevEvolve = prevEvolve;
+			prevEvolve.nextEvolve = nextEvolve;
+			nextEvolve.setNextStages(stage);
+		}
+		else if(nextEvolve != null) {
+			nextEvolve.prevEvolve = null;
+			nextEvolve.setNextStages(1);
+		}
+		else if(prevEvolve != null) {
+			prevEvolve.nextEvolve = null;
+		}
 	}
 
 	public Pokemon getPrevEvolve() {

@@ -1,6 +1,5 @@
 package Terminal.Controller;
 
-import Model.Pokemon;
 import Model.Trainer;
 import Terminal.View.Trainer.SaveTrainer;
 
@@ -19,6 +18,9 @@ public class TrainerController {
 		
 	}
 
+	/**
+	 * Add a new trainer
+	 */
 	public void addTrainer() {
 		new Trainer(v.getName(), v.getText(), v.getRule(), v.getType());
 	}
@@ -27,6 +29,10 @@ public class TrainerController {
 		return trainer;
 	}
 	
+	/**
+	 * Update a trainer
+	 * @param choice Trainer's index
+	 */
 	public void updateTrainer(int choice) {
 		switch(choice) {
 		case 0:

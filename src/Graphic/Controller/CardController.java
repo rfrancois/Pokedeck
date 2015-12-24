@@ -4,20 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-import javax.swing.JList;
-import javax.swing.JTextField;
-
-import Graphic.View.Card.AllCards;
 import Graphic.View.Card.FoundCards;
 import Graphic.View.Card.SaveCard;
-import Graphic.View.Card.SearchCard;
 import Graphic.View.Energy.AddEnergy;
 import Graphic.View.Home.Home;
 import Graphic.View.Pokemon.AddPokemon;
-import Graphic.View.Pokemon.UpdatePokemon;
 import Graphic.View.Trainer.AddTrainer;
 import Model.Card;
-import Model.Pokemon;
 
 public class CardController extends SuperController implements ActionListener {
 
@@ -36,16 +29,12 @@ public class CardController extends SuperController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent evt) {
-		if(returnToList(evt, v)) return ;
+		if(returnPrevPage(evt, v)) return ;
 		switch(evt.getActionCommand()) {
 			case "leave":
 				v.leave();
 				new Home();
 				break;
-			/*case "returnSearch":
-				v.leave();
-				new SearchCard();
-				return ;*/
 			case "addPokemon":
 				v.leave();
 				new AddPokemon();
@@ -68,7 +57,7 @@ public class CardController extends SuperController implements ActionListener {
 				String search = v.getTextSearch().getText();
 				if(search == null) return ;
 				v.leave();
-				new FoundCards(Card.search(search));
+				new FoundCards(Card.search(search), v);
 				break;
 			default:
 				System.out.println("Une erreur est survenue.");

@@ -30,7 +30,7 @@ public class PokemonController extends SuperController implements ActionListener
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(returnToList(e, v)) return ;
+		if(returnPrevPage(e, v)) return ;
 		// Erase info message
 		v.getLabelInfoMessage().setText("");
 		// Check all the fields
@@ -114,17 +114,25 @@ public class PokemonController extends SuperController implements ActionListener
 					}
 				);
 				pokemon.changeCollectorCardNumber(collectorCardNumber);
-				if(prevEvolve != 0) {
-					pokemon.changePrevEvolve(getEvolve(prevEvolve));
+				// Check evolves path
+				boolean problemEvolve = false;
+				if(prevEvolve != 0 && !pokemon.changePrevEvolve(getEvolve(prevEvolve))) {
+					v.getLabelInfoMessage().setText("Un problème sur l'évolution précédente empêche le Pokemon de se mettre à jour correctement");
+					problemEvolve = true;
 				}
-				if(nextEvolve != 0) {
-					pokemon.changeNextEvolve(getEvolve(nextEvolve));
+				if(nextEvolve != 0 && !pokemon.changeNextEvolve(getEvolve(nextEvolve))) {
+					v.getLabelInfoMessage().setText("Un problème sur l'évolution suivante empêche le Pokemon de se mettre à jour correctement");
+					problemEvolve = true;
 				}
-				v.getLabelInfoMessage().setText("Le Pokemon a été modifié");
+				if(!problemEvolve) {
+					v.getLabelInfoMessage().setText("Le Pokemon a été modifié");
+				}
 				break;
 			case "deletePokemon":
 				v.leave();
-				System.out.println("PokemonController - deletePokemon");
+				pokemon.beforeDeletePokemon();
+				v.delete(pokemon);
+				afterDelete(v);
 				break;
 			default:
 				System.out.println("Une erreur est survenue sur la classe PokemonController.");
@@ -133,6 +141,11 @@ public class PokemonController extends SuperController implements ActionListener
 		
 	}
 
+	/**
+	 * Try to parse String to int
+	 * @param value String number
+	 * @return 0 if it failed
+	 */
 	private int tryParseInt(String value) {
 		int number;
 		try {  
@@ -149,7 +162,7 @@ public class PokemonController extends SuperController implements ActionListener
 	 * @return A pokemon
 	 */
 	private Pokemon getEvolve(int index) {
-		ArrayList<Pokemon> pokemons = Pokemon.getPokemonsFromCards();
+		ArrayList<Pokemon> pokemons = Pokemon.getPokemons();
 		if(index <= 0 || index > pokemons.size()) return null;
 		return pokemons.get(index-1);
 	}

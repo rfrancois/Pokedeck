@@ -14,19 +14,19 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
-import Graphic.Controller.CardController;
 import Model.Card;
 
 public class DisplayCards extends SaveCard {
 
 	protected JLabel label = new JLabel("Sélectionnez une carte :");
 	protected DefaultListModel<String> listModel = new DefaultListModel<String>();
-	protected JList selectCards = new JList(listModel);
+	protected JList<String> selectCards = new JList<String>(listModel);
 	protected JScrollPane scrollPane = new JScrollPane(selectCards);
 	protected JButton buttonSelect = new JButton("Sélectionner");
 	protected JButton buttonLeave = new JButton("Retour");
 	protected ArrayList<JButton> buttons = new ArrayList<JButton>();
 	
+	@Override
 	public void constructGUI() {
 		setTitle("Liste des cartes");
 		super.constructGUI();

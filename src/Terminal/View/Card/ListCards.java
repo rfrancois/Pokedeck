@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import Model.Card;
-import Model.Pokemon;
-import Model.Trainer;
 import Terminal.Controller.CardController;
 
 public class ListCards extends SaveCard {
