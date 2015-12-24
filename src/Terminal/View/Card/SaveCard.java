@@ -101,7 +101,7 @@ public class SaveCard {
 	
 	/**
 	 * Display list of pokemons when search matched pokemons
-	 * @param pokemons List of pokemons
+	 * @param cards List of pokemons
 	 */
 	public void found(ArrayList<Card> cards) {
 		Scanner sc = new Scanner(System.in);

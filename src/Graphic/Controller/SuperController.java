@@ -14,6 +14,7 @@ public class SuperController {
 	 * Don't go to the home page, but to the previous page
 	 * @param e Action command
 	 * @param v Current view
+	 * @return true if an action has been done
 	 */
 	public boolean returnPrevPage(ActionEvent e, SaveCard v) {
 		if(e.getActionCommand() == "leave") {

@@ -13,6 +13,9 @@ public class Pokemon extends Card {
 	private Pokemon prevEvolve;
 	private Pokemon nextEvolve;
 	private int collectorCardNumber;
+	/**
+	 * Obsolete
+	 */
 	private int expansionSymbol;
 
 	public Pokemon(String name, int health,
@@ -113,7 +116,8 @@ public class Pokemon extends Card {
 
 	/**
 	 * Update pokemon's next evolve
-	 * @param nextEvolve Next evolve pokemon
+	 * @param nextEvolve Pokemon Next Evolve
+	 * @return nextEvolve Next evolve pokemon
 	 */
 	public boolean changeNextEvolve(Pokemon nextEvolve) {
 		if(!PrevEvolvePathIsCorrect(this.prevEvolve, nextEvolve))  {
@@ -128,7 +132,8 @@ public class Pokemon extends Card {
 	
 	/**
 	 * Update pokemon's previous evolve
-	 * @param prevEvolve Previous evolve pokemon
+	 * @param prevEvolve prevEvolve Previous evolve pokemon
+	 * @return false if the requested next evolve is already in previous evolves
 	 */
 	public boolean changePrevEvolve(Pokemon prevEvolve) {
 		if(!PrevEvolvePathIsCorrect(this.prevEvolve, nextEvolve))  {

@@ -1,0 +1,14 @@
+Graphic
+Graphic.Controller
+Graphic.View.Card
+Graphic.View.Energy
+Graphic.View.Home
+Graphic.View.Pokemon
+Graphic.View.Trainer
+Model
+Terminal
+Terminal.Controller
+Terminal.View.Card
+Terminal.View.Energy
+Terminal.View.Pokemon
+Terminal.View.Trainer

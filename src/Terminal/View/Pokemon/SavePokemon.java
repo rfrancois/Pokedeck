@@ -29,7 +29,7 @@ public class SavePokemon extends SaveCard {
 
 	/**
 	 * Update pokemon
-	 * @param pokemon Pokemon to update
+	 * @param card Pokemon to update
 	 */
 	public void update(Card card) {
 		UpdatePokemon up = new UpdatePokemon((Pokemon) card);
@@ -125,6 +125,7 @@ public class SavePokemon extends SaveCard {
 
 	/**
 	 * Ask user about Pokemon energy types
+	 * @param energies List of energies
 	 * @return List of energy types
 	 */
 	public ArrayList<Energy.EnergyTypes> getEnergyType(ArrayList<Energy.EnergyTypes> energies) {
