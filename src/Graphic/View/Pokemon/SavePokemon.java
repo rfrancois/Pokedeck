@@ -54,6 +54,7 @@ public class SavePokemon extends SaveCard {
 	protected JComboBox<String> prevEvolve = new JComboBox<String>();
 	protected JLabel labelNextEvolve = new JLabel("Evolution suivante");
 	protected JComboBox<String> nextEvolve = new JComboBox<String>();
+	protected JButton buttonLeave = new JButton("Retour");
 	protected JLabel[] labels = new JLabel[]{
 			labelStage,
 			labelName, 
@@ -104,6 +105,9 @@ public class SavePokemon extends SaveCard {
 
 		// To horizontally and vertically center panel
 		setLayout(new GridBagLayout());
+		
+		buttonLeave.setActionCommand("leave");
+		buttons.add(buttonLeave);
 		
 		// Action Listener
 		for(JButton button : buttons) {

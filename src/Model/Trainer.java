@@ -23,17 +23,28 @@ public class Trainer extends Card implements Serializable {
 	public String getText() {
 		return text;
 	}
+	
 	public String getRule() {
 		return rule;
 	}
 	
+	public TrainerTypes getType() {
+		return type;
+	}
+
 	public static enum TrainerTypes {
 		Item {
 			@Override
 			public String toString() {
 				return "Item";
 			}
-		}		
+		},
+		Bonus {
+			@Override
+			public String toString() {
+				return "Bonus";
+			}
+		}	
 	}
 
 	public void changeText(String text) {

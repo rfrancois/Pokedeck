@@ -1,22 +1,17 @@
 package Graphic.Controller;
 
-import java.awt.Component;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.JComponent;
-
-import Graphic.View.Home.Home;
 import Graphic.View.Pokemon.SavePokemon;
 import Graphic.View.Pokemon.UpdatePokemon;
 import Model.Attack;
-import Model.Energy;
 import Model.Energy.EnergyTypes;
 import Model.Pokemon;
 
-public class PokemonController implements ActionListener {
+public class PokemonController extends SuperController implements ActionListener {
 
 	SavePokemon v;
 	Pokemon pokemon;
@@ -35,12 +30,7 @@ public class PokemonController implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// Leave if user pressed leave button
-		if(e.getActionCommand() == "leave") {
-			v.leave();
-			new Home();
-			return ;
-		}
+		if(returnToList(e, v)) return ;
 		// Erase info message
 		v.getLabelInfoMessage().setText("");
 		// Check all the fields
@@ -109,7 +99,8 @@ public class PokemonController implements ActionListener {
 							collectorCardNumber, 
 							0
 					),
-					"Le Pokemon a été ajouté"
+					"Le Pokemon a été ajouté",
+					v
 				);
 				break;
 			case "updatePokemon":

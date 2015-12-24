@@ -22,6 +22,11 @@ public class SearchCard extends SaveCard {
 		constructGUI();
 	}
 	
+	public SearchCard(String search) {
+		this();
+		textSearch.setText(search);
+	}
+	
 	public void constructGUI() {
 		setTitle("Rechercher une carte");
 		// To horizontally and vertically center panel

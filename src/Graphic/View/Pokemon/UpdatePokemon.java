@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 
 import Graphic.Controller.PokemonController;
+import Graphic.View.Card.SaveCard;
 import Model.Card;
 import Model.Energy;
 import Model.Energy.EnergyTypes;
@@ -14,15 +15,15 @@ public class UpdatePokemon extends SavePokemon {
 	
 	private JButton buttonUpdate = new JButton("Modifier");
 	private JButton buttonDelete = new JButton("Supprimer");
-	private JButton buttonLeave = new JButton("Retour");
 	
-	public UpdatePokemon(Pokemon pokemon) {
+	public UpdatePokemon(Pokemon pokemon, SaveCard prevView) {
 		controller = new PokemonController(this, pokemon);
+		this.prevView = prevView;
 		constructGUI();
 	}
 	
-	public UpdatePokemon(Pokemon pokemon, String infoMessage) {
-		this(pokemon);
+	public UpdatePokemon(Pokemon pokemon, String infoMessage, SaveCard prevView) {
+		this(pokemon, prevView);
 		labelInfoMessage.setText(infoMessage);
 	}
 
@@ -30,10 +31,8 @@ public class UpdatePokemon extends SavePokemon {
 		setTitle("Modifier le Pokemon");
 		buttonUpdate.setActionCommand("updatePokemon");
 		buttonDelete.setActionCommand("deletePokemon");
-		buttonLeave.setActionCommand("leave");
 		buttons.add(buttonUpdate);
 		buttons.add(buttonDelete);
-		buttons.add(buttonLeave);
 		super.constructGUI();
 		
 		Pokemon pokemon = controller.getPokemon();

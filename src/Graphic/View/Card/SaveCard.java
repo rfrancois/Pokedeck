@@ -7,33 +7,34 @@ import javax.swing.JTextField;
 
 import Graphic.Controller.CardController;
 import Graphic.Controller.HomeController;
+import Graphic.View.Energy.UpdateEnergy;
+import Graphic.View.Home.Home;
 import Graphic.View.Pokemon.UpdatePokemon;
+import Graphic.View.Trainer.UpdateTrainer;
 import Model.Card;
+import Model.Energy;
 import Model.Pokemon;
+import Model.Trainer;
 
 public class SaveCard extends JFrame {
 	
 	protected CardController controller;
-	protected int textFieldSize = 15;
+	protected int textFieldSize = 25;
+	protected SaveCard prevView;
 	
 	/**
 	 * Use this method when don't know if update is from Pokemon or Trainer or Energy type 
 	 * @param card A card
 	 */
 	public void update(Card card) {
-		switch(card.getClass().getName()) {
-			case "Model.Pokemon":
-				new UpdatePokemon((Pokemon) card);
-				break;
-			case "Model.Trainer":
-				System.out.println("SaveCard");
-				break;
-			case "Model.Energy":
-				System.out.println("SaveCard");
-				break;
-			default:
-				System.out.println("Une erreur est survenue dans Graphic.View.Card.SaveCard");
-				break;
+		if(card instanceof Pokemon) {
+			new UpdatePokemon((Pokemon) card, this);
+		}
+		else if(card instanceof Trainer) {
+			new UpdateTrainer((Trainer) card, this);
+		}
+		else if(card instanceof Energy) {
+			new UpdateEnergy((Energy) card, this);
 		}
 	}
 	
@@ -64,5 +65,12 @@ public class SaveCard extends JFrame {
 	public JTextField getTextSearch() {
 		return null;
 	}
-
+	
+	/**
+	 * View before current view
+	 * @return The previous view
+	 */
+	public SaveCard getPrevView() {
+		return prevView;
+	}
 }

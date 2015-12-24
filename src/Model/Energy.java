@@ -16,6 +16,10 @@ public class Energy extends Card implements Serializable {
 		return name;
 	}
 	
+	public EnergyTypes getType() {
+		return type;
+	}
+
 	public void changeEnergy(EnergyTypes type) {
 		this.type = type;
 		super.changeName(type.toString());

@@ -7,15 +7,19 @@ import java.util.ArrayList;
 import javax.swing.JList;
 import javax.swing.JTextField;
 
+import Graphic.View.Card.AllCards;
 import Graphic.View.Card.FoundCards;
 import Graphic.View.Card.SaveCard;
+import Graphic.View.Card.SearchCard;
+import Graphic.View.Energy.AddEnergy;
 import Graphic.View.Home.Home;
 import Graphic.View.Pokemon.AddPokemon;
 import Graphic.View.Pokemon.UpdatePokemon;
+import Graphic.View.Trainer.AddTrainer;
 import Model.Card;
 import Model.Pokemon;
 
-public class CardController implements ActionListener {
+public class CardController extends SuperController implements ActionListener {
 
 	SaveCard v;
 	ArrayList<Card> cards;
@@ -32,25 +36,32 @@ public class CardController implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent evt) {
+		if(returnToList(evt, v)) return ;
 		switch(evt.getActionCommand()) {
 			case "leave":
 				v.leave();
 				new Home();
 				break;
+			/*case "returnSearch":
+				v.leave();
+				new SearchCard();
+				return ;*/
 			case "addPokemon":
 				v.leave();
 				new AddPokemon();
 				return ;
 			case "addTrainer":
-				System.out.println("Controller.CardController");
+				v.leave();
+				new AddTrainer();
 				return ;
 			case "addEnergy":
-				System.out.println("Controller.CardController");
+				v.leave();
+				new AddEnergy();
 				return ;
 			case "selectCard":
 				int index = v.getSelectedCardIndex();
 				if(index < 0) return ;
-				v.leave();
+				v.setVisible(false);
 				v.update(cards.get(index));
 				break;
 			case "searchCard":
