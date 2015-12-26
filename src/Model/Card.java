@@ -35,9 +35,10 @@ public class Card implements Serializable {
 	}
 	
 	/**
-	 * Save deck
+	 * Save the deck
+	 * @return 3 which is the code to completly close program
 	 */
-	public static void serialize() {
+	public static int serialize() {
 		try
 		{
 			FileOutputStream fileOut = new FileOutputStream("data/pokemon.ser");
@@ -49,6 +50,7 @@ public class Card implements Serializable {
 		{
 			ioe.printStackTrace();
 		}
+		return 3;
 	}
 
 	/**

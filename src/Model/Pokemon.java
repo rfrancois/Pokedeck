@@ -120,7 +120,7 @@ public class Pokemon extends Card {
 	 * @return nextEvolve Next evolve pokemon
 	 */
 	public boolean changeNextEvolve(Pokemon nextEvolve) {
-		if(!PrevEvolvePathIsCorrect(this.prevEvolve, nextEvolve))  {
+		if(!PrevEvolvePathIsCorrect(this.prevEvolve, nextEvolve) || nextEvolve == this)  {
 			return false;
 		}
 		this.nextEvolve = nextEvolve;
@@ -136,7 +136,7 @@ public class Pokemon extends Card {
 	 * @return false if the requested next evolve is already in previous evolves
 	 */
 	public boolean changePrevEvolve(Pokemon prevEvolve) {
-		if(!PrevEvolvePathIsCorrect(this.prevEvolve, nextEvolve))  {
+		if(!PrevEvolvePathIsCorrect(this.prevEvolve, nextEvolve) || prevEvolve == this)  {
 			return false;
 		}
 		this.prevEvolve = prevEvolve;

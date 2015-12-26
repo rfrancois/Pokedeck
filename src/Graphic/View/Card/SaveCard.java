@@ -1,9 +1,12 @@
 package Graphic.View.Card;
 
+import java.awt.event.WindowAdapter;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+
+import com.sun.glass.events.WindowEvent;
 
 import Graphic.Controller.CardController;
 import Graphic.View.Energy.UpdateEnergy;
@@ -15,11 +18,11 @@ import Model.Pokemon;
 import Model.Trainer;
 
 public class SaveCard extends JFrame {
-	
+
 	protected CardController controller;
 	protected int textFieldSize = 25;
 	protected SaveCard prevView;
-	
+
 	/**
 	 * Use this method when don't know if update is from Pokemon or Trainer or Energy type 
 	 * @param card A card
@@ -35,7 +38,7 @@ public class SaveCard extends JFrame {
 			new UpdateEnergy((Energy) card, this);
 		}
 	}
-	
+
 	/**
 	 * Delete a card from the deck
 	 * @param card Card to delete
@@ -43,7 +46,7 @@ public class SaveCard extends JFrame {
 	public void delete(Card card) {
 		Card.getCards().remove(card);
 	}
-	
+
 	/**
 	 * Leave the program
 	 */
@@ -51,18 +54,19 @@ public class SaveCard extends JFrame {
 		setVisible(false);
 		dispose();
 	}
-	
+
 	/**
 	 * Construct fields, buttons which have to be shown to the user
 	 */
 	public void constructGUI() {
 		setSize(750,550);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(Card.serialize());
+		// Call serialize function before leaving program
 		// Center at the middle of the screen
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	
+
 	/**
 	 * Returns id of selected card
 	 * @return -1 : an error
@@ -70,7 +74,7 @@ public class SaveCard extends JFrame {
 	public int getSelectedCardIndex() {
 		return -1;
 	}
-	
+
 	/**
 	 * Return nothing to warn of an error
 	 * @return An error
@@ -78,7 +82,7 @@ public class SaveCard extends JFrame {
 	public JTextField getTextSearch() {
 		return null;
 	}
-	
+
 	/**
 	 * View before current view
 	 * @return The previous view
@@ -86,7 +90,7 @@ public class SaveCard extends JFrame {
 	public SaveCard getPrevView() {
 		return prevView;
 	}
-	
+
 	/**
 	 * Get list of cards used by controller
 	 * @return List of cards
